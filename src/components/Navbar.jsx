@@ -21,7 +21,7 @@ const Navbar = () => {
       <div className=" mx-auto px-4 sm:px-6 lg:px-4">
         <div className="flex justify-between items-center relative">
           <div className="flex justify- gap-4">
-            <img src="logo.svg" alt="Logo" className="w-50  -translate-y-10  invert" />
+            <img src="logo.svg" alt="Logo" className="lg:w-50 w-30  -translate-y-10  invert" />
           </div>
 
           {/* Mobile Menu Button */}
