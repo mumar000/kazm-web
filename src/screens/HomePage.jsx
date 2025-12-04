@@ -5,6 +5,7 @@ import CoreValues from '../components/CoreValues';
 import Footer from '../components/Footer';
 import SEO from '../components/SEO';
 import HeroSectionII from '../components/HeroSectionII';
+import ContactForm from '../components/ContactUs';
 
 const HomePage = () => {
   return (
@@ -20,6 +21,7 @@ const HomePage = () => {
       <Hero />
       {/* <AboutUs /> */}
       {/* <CoreValues /> */}
+      <ContactForm />
       <Footer />
     </div>
   );
