@@ -6,6 +6,7 @@ import Footer from '../components/Footer';
 import SEO from '../components/SEO';
 import HeroSectionII from '../components/HeroSectionII';
 import ContactForm from '../components/ContactUs';
+import ComingSoon from '../components/ComingSoon';
 
 const HomePage = () => {
   return (
@@ -18,7 +19,7 @@ const HomePage = () => {
 
       <Navbar />
       <HeroSectionII />
-      <Hero />
+      <ComingSoon />
       {/* <AboutUs /> */}
       {/* <CoreValues /> */}
       <ContactForm />
