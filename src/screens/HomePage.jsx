@@ -4,23 +4,24 @@ import AboutUs from '../components/AboutUs';
 import CoreValues from '../components/CoreValues';
 import Footer from '../components/Footer';
 import SEO from '../components/SEO';
+import HeroSectionII from '../components/HeroSectionII';
 
 const HomePage = () => {
   return (
-    <>
+    <div className="relative">
       <SEO
-        title="YourBrand - Modern Landing Page"
-        description="Build amazing landing pages with modern design and blazing-fast performance"
-        keywords="landing page, react, vite, tailwind, framer motion"
+        title="KAZM - Creative Motion Collective"
+        description="KAZM is a culture-driven collective crafting experiences across events, music, motion, and storytelling."
+        keywords="KAZM, creative collective, motion design, event experiences, storytelling, music production"
       />
-      <div>
-        <Navbar />
-        <Hero />
-        <AboutUs />
-        <CoreValues />
-        <Footer />
-      </div>
-    </>
+
+      <Navbar />
+      <HeroSectionII />
+      <Hero />
+      {/* <AboutUs /> */}
+      {/* <CoreValues /> */}
+      <Footer />
+    </div>
   );
 };
 
