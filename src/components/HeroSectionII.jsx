@@ -23,9 +23,6 @@ const HeroSectionII = () => {
             <h1 className="text-[120px] z-30 md:text-[180px] lg:text-[220px] xl:text-[280px] font-black tracking-tighter leading-none text-slate-900/60">
               KAZM
             </h1>
-            <p className="text-lg font-extrabold  -translate-y-6">
-              Founded by Umar Qayyum & Shahrukh Kazim
-            </p>
           </div>
 
           {/* Center Image */}
