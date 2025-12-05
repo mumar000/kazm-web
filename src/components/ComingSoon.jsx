@@ -71,7 +71,7 @@ const ComingSoon = () => {
       </div>
 
       {/* Center Form Container */}
-      <div className="relative z-10 w-full max-w-2xl px-6">
+      <div className="relative z-10 w-full py-20 max-w-2xl px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -80,22 +80,7 @@ const ComingSoon = () => {
         >
           {/* Countdown Timer */}
           <div className="flex justify-center gap-6 md:gap-12 mb-8">
-            <div className="text-center">
-              <div className="text-5xl md:text-6xl font-bold">{timeLeft.days}</div>
-              <div className="text-gray-400 text-sm md:text-base mt-2">Days</div>
-            </div>
-            <div className="text-5xl md:text-6xl font-bold self-center">·</div>
-            <div className="text-center">
-              <div className="text-5xl md:text-6xl font-bold">{timeLeft.hours}</div>
-              <div className="text-gray-400 text-sm md:text-base mt-2">Hours</div>
-            </div>
-            <div className="text-5xl md:text-6xl font-bold self-center">·</div>
-            <div className="text-center">
-              <div className="text-5xl md:text-6xl font-bold">
-                {String(timeLeft.mins).padStart(2, '0')}
-              </div>
-              <div className="text-gray-400 text-sm md:text-base mt-2">Mins</div>
-            </div>
+            <h1 className="text-6xl font-bold">Contact Us Now!</h1>
           </div>
 
           {/* Contact Form */}
