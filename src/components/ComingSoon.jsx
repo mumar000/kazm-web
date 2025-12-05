@@ -115,15 +115,15 @@ const ComingSoon = () => {
             >
               <h1 className="text-6xl font-black mb-6 tracking-tighter">Hello.</h1>
               <p className="text-xl text-gray-300 mb-10 leading-relaxed">
-                We are crafting a new experience. <br /> Join the waitlist to get early access.
+                We are crafting a new experience.
               </p>
               <motion.button
                 onClick={openBook}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="bg-white text-black px-10 py-4 rounded-full font-bold text-lg hover:shadow-[0_0_20px_rgba(255,255,255,0.3)] transition-all"
+                className="bg-white cursor-pointer text-black px-10 py-4 rounded-full font-bold text-lg hover:shadow-[0_0_20px_rgba(255,255,255,0.3)] transition-all"
               >
-                Open Form
+                Contact Form
               </motion.button>
             </motion.div>
           ) : (
@@ -144,7 +144,7 @@ const ComingSoon = () => {
                 <div className="h-full flex flex-col justify-between">
                   <div>
                     <h2 className="text-4xl font-bold mb-6">Let's Connect</h2>
-                    <div className="w-12 h-1 bg-blue-400 mb-8 rounded-full"></div>
+                    <div className="w-12 h-1 bg-white mb-8 rounded-full"></div>
                     <p className="text-gray-300 leading-relaxed text-lg">
                       Fill out the form on the right page. We read every message and will get back
                       to you faster than you think.
@@ -153,14 +153,14 @@ const ComingSoon = () => {
 
                   <div className="mt-8">
                     <div className="flex items-center gap-2 text-sm text-gray-400 uppercase tracking-widest mb-2">
-                      Progress
+                      Step
                     </div>
                     <div className="flex gap-2">
                       {[1, 2, 3].map((step) => (
                         <div
                           key={step}
                           className={`h-1.5 rounded-full transition-all duration-500 ${
-                            currentPage >= step ? 'w-8 bg-blue-400' : 'w-4 bg-white/20'
+                            currentPage >= step ? 'w-8 bg-white' : 'w-4 bg-white/20'
                           }`}
                         />
                       ))}
@@ -197,7 +197,7 @@ const ComingSoon = () => {
                           onChange={handleChange}
                           autoFocus
                           placeholder="Type your name here..."
-                          className="w-full bg-transparent border-b-2 border-white/20 py-4 text-2xl text-white placeholder-white/20 focus:outline-none focus:border-blue-400 transition-colors"
+                          className="w-full bg-transparent border-b-2 border-white/20 py-4 text-2xl text-white placeholder-white/20 focus:outline-none focus:border-white transition-colors"
                         />
                         <div className="flex justify-between items-center mt-auto pt-8">
                           <button
@@ -239,7 +239,7 @@ const ComingSoon = () => {
                           onChange={handleChange}
                           autoFocus
                           placeholder="name@example.com"
-                          className="w-full bg-transparent border-b-2 border-white/20 py-4 text-2xl text-white placeholder-white/20 focus:outline-none focus:border-blue-400 transition-colors"
+                          className="w-full bg-transparent border-b-2 border-white/20 py-4 text-2xl text-white placeholder-white/20 focus:outline-none focus:border-white transition-colors"
                         />
                         <div className="flex justify-between items-center mt-auto pt-8">
                           <button
@@ -281,7 +281,7 @@ const ComingSoon = () => {
                           autoFocus
                           rows={3}
                           placeholder="Tell us about your project..."
-                          className="w-full bg-transparent border-b-2 border-white/20 py-4 text-xl text-white placeholder-white/20 focus:outline-none focus:border-blue-400 transition-colors resize-none"
+                          className="w-full bg-transparent border-b-2 border-white/20 py-4 text-xl text-white placeholder-white/20 focus:outline-none focus:border-white transition-colors resize-none"
                         />
                         <div className="flex justify-between items-center mt-auto pt-8">
                           <button
@@ -293,7 +293,7 @@ const ComingSoon = () => {
                           <button
                             onClick={handleSubmit}
                             disabled={!formData.message}
-                            className="bg-blue-500 text-white px-8 py-3 rounded-xl font-semibold hover:bg-blue-400 transition-all disabled:opacity-50 shadow-[0_0_20px_rgba(59,130,246,0.4)]"
+                            className="bg-blue-500 text-white px-8 py-3 rounded-xl font-semibold hover:bg-white transition-all disabled:opacity-50 shadow-[0_0_20px_rgba(59,130,246,0.4)]"
                           >
                             Submit
                           </button>
