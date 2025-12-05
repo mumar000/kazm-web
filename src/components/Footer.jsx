@@ -31,7 +31,7 @@ const HellboyFooter = () => {
   }, []);
 
   return (
-    <footer ref={footerRef} className="bg-black text-white relative overflow-hidden">
+    <footer ref={footerRef} className="bg-[black] text-white relative overflow-hidden">
       {/* Animated background elements */}
       <div className="absolute inset-0 pointer-events-none">
         {[...Array(10)].map((_, i) => (
@@ -68,14 +68,16 @@ const HellboyFooter = () => {
           }`}
         >
           {/* Left */}
-          <div className="text-sm text-gray-400 mb-6 lg:mb-0 lg:max-w-md">
-            <p className="mb-2 hover:text-gray-300 transition-colors duration-300">
-              Shahrukh Kazim AKA Fepo® The top guy featured in several national and
-              international projects
-            </p>
-            <p className="hover:text-gray-300 transition-colors duration-300">
-              Shahrukh Kazim™ 2025
-            </p>
+          <div className="flex flex-col  gap-6">
+            <div className="text-lg text-gray-400 mb-6 lg:mb-0 lg:max-w-md">
+              <p className="mb-2 hover:text-gray-300 transition-colors duration-300">
+                Founded by Umar Qayyum & Shahrukh Kazim
+              </p>
+              <p className="hover:text-gray-300 transition-colors duration-300">KAZM™ 2025</p>
+            </div>
+            <div>
+              <img src="logo.svg" alt="Logo" className="w-40 " />
+            </div>
           </div>
 
           {/* Center - Pepsi & Coke Studio Logos */}
@@ -100,10 +102,10 @@ const HellboyFooter = () => {
 
             {/* Shahrukh Kazim Text */}
             <div className="text-white font-serif italic hover:scale-105 transition-transform duration-300 cursor-pointer group">
-              <span className="text-lg group-hover:text-gray-300 transition-colors duration-300">
+              <span className="text-3xl group-hover:text-gray-300 transition-colors duration-300">
                 Shahrukh Kazim
               </span>
-              <div className="text-xs tracking-wider group-hover:text-gray-300 transition-colors duration-300">
+              <div className="text-xl tracking-wider group-hover:text-gray-300 transition-colors duration-300">
                 Productions
               </div>
             </div>
@@ -142,17 +144,6 @@ const HellboyFooter = () => {
                 className="text-gray-400 hover:text-white transition-all duration-300 hover:scale-105 group relative"
               >
                 PRIVACY POLICY
-                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-red-500 transition-all duration-300 group-hover:w-full"></span>
-              </p>
-              <p
-                // href="#"
-                className="text-gray-400 hover:text-white transition-all duration-300 hover:scale-105 group relative flex items-center"
-              >
-                WEBSITE Powered by &nbsp;
-                <a href="https://techxudo.com" target="_blank">
-                  Techxudo
-                </a>
-                <p className="w-3 h-3 ml-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-red-500 transition-all duration-300 group-hover:w-full"></span>
               </p>
             </div>
