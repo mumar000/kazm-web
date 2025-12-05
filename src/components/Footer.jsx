@@ -1,173 +1,228 @@
-import { motion } from 'framer-motion';
-import { Instagram, Twitter, Linkedin, Mail } from 'lucide-react';
+import { ExternalLink, Instagram, Youtube } from 'lucide-react';
+import { useEffect, useRef, useState } from 'react';
+import { FaMusic } from 'react-icons/fa';
+// import { Link } from "react-router-dom";
+// import cokeStudioLogo from '../asserts/coke studio.jpeg';
+// import img from '../asserts/image-1.png';
+// import pepsiLogo from '../asserts/papsi.png';
 
-const Footer = () => {
-  const currentYear = new Date().getFullYear();
+const HellboyFooter = () => {
+  const [isVisible, setIsVisible] = useState(false);
+  const [speechBubbleVisible, setSpeechBubbleVisible] = useState(false);
+  const footerRef = useRef(null);
 
-  const socialLinks = [
-    { icon: <Instagram size={20} />, href: '#', label: 'Instagram' },
-    { icon: <Twitter size={20} />, href: '#', label: 'Twitter' },
-    { icon: <Linkedin size={20} />, href: '#', label: 'LinkedIn' },
-    { icon: <Mail size={20} />, href: '#', label: 'Email' },
-  ];
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          // Delay speech bubble animation
+          setTimeout(() => setSpeechBubbleVisible(true), 1000);
+        }
+      },
+      { threshold: 0.2 }
+    );
 
-  // Graffiti SVG Background Elements
-  const GraffitiBackground = () => (
-    <div className="absolute inset-0 overflow-hidden opacity-30">
-      {/* Abstract Paint Strokes */}
-      <svg className="absolute top-0 right-0 w-96 h-96" viewBox="0 0 400 400">
-        <path
-          d="M 50 100 Q 150 50 250 100 T 350 150"
-          stroke="url(#gradient1)"
-          strokeWidth="40"
-          fill="none"
-          strokeLinecap="round"
-        />
-        <circle cx="300" cy="100" r="60" fill="url(#gradient2)" opacity="0.5" />
-        <defs>
-          <linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#FF6B6B" />
-            <stop offset="100%" stopColor="#4ECDC4" />
-          </linearGradient>
-          <radialGradient id="gradient2">
-            <stop offset="0%" stopColor="#FFE66D" />
-            <stop offset="100%" stopColor="#FF6B6B" />
-          </radialGradient>
-        </defs>
-      </svg>
+    if (footerRef.current) {
+      observer.observe(footerRef.current);
+    }
 
-      {/* Bottom Left Graffiti Elements */}
-      <svg className="absolute bottom-0 left-0 w-80 h-80" viewBox="0 0 400 400">
-        <path
-          d="M 100 300 Q 200 250 300 300"
-          stroke="url(#gradient3)"
-          strokeWidth="35"
-          fill="none"
-          strokeLinecap="round"
-        />
-        <ellipse cx="150" cy="320" rx="80" ry="50" fill="url(#gradient4)" opacity="0.4" />
-        <defs>
-          <linearGradient id="gradient3" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stopColor="#A8E6CF" />
-            <stop offset="100%" stopColor="#FFD3B6" />
-          </linearGradient>
-          <linearGradient id="gradient4">
-            <stop offset="0%" stopColor="#FFAAA5" />
-            <stop offset="100%" stopColor="#FF8B94" />
-          </linearGradient>
-        </defs>
-      </svg>
-
-      {/* Center Abstract Shapes */}
-      <svg className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full" viewBox="0 0 800 400">
-        <path
-          d="M 200 200 Q 400 100 600 200"
-          stroke="url(#gradient5)"
-          strokeWidth="50"
-          fill="none"
-          strokeLinecap="round"
-          opacity="0.3"
-        />
-        <circle cx="400" cy="200" r="100" fill="url(#gradient6)" opacity="0.2" />
-        <defs>
-          <linearGradient id="gradient5" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#B4A7D6" />
-            <stop offset="100%" stopColor="#F4A6D7" />
-          </linearGradient>
-          <radialGradient id="gradient6">
-            <stop offset="0%" stopColor="#FFD93D" />
-            <stop offset="100%" stopColor="#6BCF7F" />
-          </radialGradient>
-        </defs>
-      </svg>
-
-      {/* Paint Drips Effect */}
-      <div className="absolute top-0 left-1/4 w-2 h-32 bg-gradient-to-b from-pink-500/30 to-transparent"></div>
-      <div className="absolute top-0 right-1/3 w-3 h-40 bg-gradient-to-b from-purple-500/30 to-transparent"></div>
-      <div className="absolute top-0 right-1/4 w-2 h-24 bg-gradient-to-b from-cyan-500/30 to-transparent"></div>
-    </div>
-  );
-
-  const links = [
-    { name: 'Home', href: '#home' },
-    { name: 'About', href: '#about' },
-    { name: 'Services', href: '#services' },
-    { name: 'FAQs', href: '#faqs' },
-    { name: 'Contact', href: '#contact' },
-  ];
+    return () => observer.disconnect();
+  }, []);
 
   return (
-    <footer id="footer" className="relative bg-[#0A0A0A] text-white overflow-hidden">
-      {/* Graffiti Background - Outside Container */}
-      <GraffitiBackground />
+    <footer ref={footerRef} className="bg-black text-white relative overflow-hidden">
+      {/* Animated background elements */}
+      <div className="absolute inset-0 pointer-events-none">
+        {[...Array(10)].map((_, i) => (
+          <div
+            key={i}
+            className={`absolute w-1 h-1 bg-red-500/10 rounded-full transition-all duration-1000 ${
+              isVisible ? 'animate-pulse opacity-100' : 'opacity-0'
+            }`}
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              animationDelay: `${Math.random() * 3}s`,
+              transitionDelay: `${i * 200}ms`,
+            }}
+          />
+        ))}
+      </div>
 
-      {/* Main Footer Container */}
-      <div className="max-w-7xl mx-auto px-8 py-20 relative z-10">
-        {/* Large Rectangle Container */}
-        <div className="bg-[#1B1B1B] rounded-3xl p-12 lg:p-16">
-          {/* Top Section */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 mb-16">
-            {/* Left - Brand */}
-            <div className="space-y-6">
-              <h2 className="text-5xl lg:text-6xl font-bold tracking-tight">KAZM</h2>
-              <p className="text-gray-400 text-lg max-w-md leading-relaxed">
-                A culture-driven collective crafting experiences across events, music, motion, and
-                storytelling.
+      {/* Main Footer Content */}
+      <div className="container mx-auto px-4 py-16 relative z-10">
+        {/* Hellboy Character and Logo */}
+
+        {/* Animated Separator Line */}
+        <div
+          className={`w-full h-px bg-gradient-to-r from-transparent via-gray-700 to-transparent mb-12 transition-all duration-1000 delay-900 ${
+            isVisible ? 'scale-x-100 opacity-100' : 'scale-x-0 opacity-0'
+          }`}
+        ></div>
+
+        {/* Copyright and Logos */}
+        <div
+          className={`flex flex-col lg:flex-row items-center justify-between mb-12 transition-all duration-1000 delay-1100 ${
+            isVisible ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
+          }`}
+        >
+          {/* Left */}
+          <div className="text-sm text-gray-400 mb-6 lg:mb-0 lg:max-w-md">
+            <p className="mb-2 hover:text-gray-300 transition-colors duration-300">
+              Shahrukh Kazim AKA Fepo® The top guy featured in several national and
+              international projects
+            </p>
+            <p className="hover:text-gray-300 transition-colors duration-300">
+              Shahrukh Kazim™ 2025
+            </p>
+          </div>
+
+          {/* Center - Pepsi & Coke Studio Logos */}
+          <div className="flex items-center space-x-8 mb-6 lg:mb-0">
+            {/* Pepsi Logo */}
+            {/* <div className="w-12 h-12 rounded-full flex items-center justify-center bg-white hover:scale-110 transition-all duration-300 cursor-pointer group">
+              <img
+                src={pepsiLogo}
+                alt="Pepsi"
+                className="w-8 h-8 object-contain group-hover:scale-110 transition-transform duration-300"
+              />
+            </div> */}
+
+            {/* Coke Studio Logo */}
+            {/* <div className="w-12 h-12 rounded-full flex items-center justify-center bg-white hover:scale-110 transition-all duration-300 cursor-pointer group">
+              <img
+                src={cokeStudioLogo}
+                alt="Coke Studio"
+                className="w-8 h-8 object-contain group-hover:scale-110 transition-transform duration-300"
+              />
+            </div>{' '} */}
+
+            {/* Shahrukh Kazim Text */}
+            <div className="text-white font-serif italic hover:scale-105 transition-transform duration-300 cursor-pointer group">
+              <span className="text-lg group-hover:text-gray-300 transition-colors duration-300">
+                Shahrukh Kazim
+              </span>
+              <div className="text-xs tracking-wider group-hover:text-gray-300 transition-colors duration-300">
+                Productions
+              </div>
+            </div>
+          </div>
+
+          {/* Right - Animated Decorative Elements */}
+          <div className="flex space-x-2">
+            <div className="w-3 h-3 bg-gray-600 transform rotate-45 hover:bg-red-500 hover:rotate-[225deg] transition-all duration-500"></div>
+            <div
+              className="w-3 h-3 bg-gray-600 transform rotate-45 hover:bg-red-500 hover:rotate-[225deg] transition-all duration-500"
+              style={{ transitionDelay: '100ms' }}
+            ></div>
+          </div>
+        </div>
+      </div>
+
+      {/* Bottom Footer */}
+      <div className="border-t border-gray-800 relative">
+        <div className="container mx-auto px-4 py-6">
+          <div
+            className={`flex flex-col lg:flex-row items-center justify-between text-sm transition-all duration-1000 delay-1300 ${
+              isVisible ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
+            }`}
+          >
+            {/* Left Links */}
+            <div className="flex flex-wrap items-center justify-center space-x-6 mb-4 lg:mb-0">
+              <p
+                // href="#"
+                className="text-gray-400 hover:text-white transition-all duration-300 hover:scale-105 group relative"
+              >
+                DISCLAIMER
+                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-red-500 transition-all duration-300 group-hover:w-full"></span>
+              </p>
+              <p
+                // href="#"
+                className="text-gray-400 hover:text-white transition-all duration-300 hover:scale-105 group relative"
+              >
+                PRIVACY POLICY
+                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-red-500 transition-all duration-300 group-hover:w-full"></span>
+              </p>
+              <p
+                // href="#"
+                className="text-gray-400 hover:text-white transition-all duration-300 hover:scale-105 group relative flex items-center"
+              >
+                WEBSITE Powered by &nbsp;
+                <a href="https://techxudo.com" target="_blank">
+                  Techxudo
+                </a>
+                <p className="w-3 h-3 ml-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-red-500 transition-all duration-300 group-hover:w-full"></span>
               </p>
             </div>
 
-            {/* Right - Links */}
-            <div className="flex flex-col lg:items-end justify-center space-y-4">
-              {links.map((link) => (
+            {/* Right - Social Icons and Wishlist */}
+            <div className="flex items-center space-x-6">
+              <div className="flex items-center space-x-4">
                 <a
-                  key={link.name}
-                  href={link.href}
-                  className="text-gray-400 hover:text-white text-lg transition-colors duration-300"
+                  href="https://youtube.com/@shahrukhkazimmusic?si=F-7AdhOpat7R0szv"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-400 hover:text-red-500 transition-all duration-300 hover:scale-110 hover:rotate-12"
                 >
-                  {link.name}
+                  <Youtube className="h-7 w-5" />
+                  <span className="sr-only">YouTube</span>
                 </a>
-              ))}
+
+                {/* Instagram */}
+                <a
+                  href="https://www.instagram.com/shahrukhkazimmusic?igsh=cjJlcTNid2RlMDg%3D&utm_source=qr"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-400 hover:text-pink-500 transition-all duration-300 hover:scale-110 hover:rotate-12"
+                >
+                  <Instagram className="h-5 w-5" />
+                  <span className="sr-only">Instagram</span>
+                </a>
+
+                {/* Spotify */}
+                <a
+                  href="https://open.spotify.com/artist/02yAoSmsqYASF4Wb45bRlJ?si=FUpZE2KuTTORctKhIxoStg"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-400 hover:text-green-500 transition-all duration-300 hover:scale-110 hover:rotate-12"
+                >
+                  <div className="w-4 h-4 lg:w-5 lg:h-5 text-gray-400 hover:text-green-400 cursor-pointer transition-colors duration-300">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.42 1.56-.299.421-1.02.599-1.559.3z" />
+                    </svg>
+                  </div>
+                </a>
+              </div>
             </div>
           </div>
 
-          {/* Divider */}
-          <div className="border-t border-gray-800 mb-12"></div>
-
-          {/* Bottom Section */}
-          <div className="flex flex-col lg:flex-row justify-between items-center gap-6">
-            {/* Copyright */}
-            <p className="text-gray-500 text-sm">
-              © {currentYear} KAZM. All rights reserved.
-            </p>
-
-            {/* Social Links */}
-            <div className="flex gap-4">
-              {socialLinks.map((social, index) => (
-                <motion.a
-                  key={index}
-                  href={social.href}
-                  aria-label={social.label}
-                  whileHover={{ scale: 1.1, y: -2 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="w-10 h-10 rounded-full bg-[#2A2A2A] flex items-center justify-center text-gray-400 hover:text-white hover:bg-[#333333] transition-all duration-300"
-                >
-                  {social.icon}
-                </motion.a>
-              ))}
-            </div>
-
-            {/* Contact Email */}
-            <a
-              href="mailto:hello@kazm.studio"
-              className="text-gray-400 hover:text-white text-sm transition-colors duration-300"
-            >
-              hello@kazm.studio
+          {/* Copyright */}
+          <div
+            className={`text-center mt-4 text-xs text-gray-500 transition-all duration-1000 delay-1500 hover:text-gray-400 ${
+              isVisible ? 'translate-y-0 opacity-100' : 'translate-y-2 opacity-0'
+            }`}
+          >
+            COPYRIGHT 2025, Powered by &nbsp;
+            <a href="https://techxudo.com" target="_blank">
+              Techxudo
             </a>
           </div>
         </div>
+
+        {/* Floating elements */}
+        <div
+          className="absolute top-4 left-10 w-1 h-1 bg-red-500/30 rounded-full animate-ping"
+          style={{ animationDelay: '2s' }}
+        ></div>
+        <div
+          className="absolute bottom-4 right-20 w-1.5 h-1.5 bg-yellow-500/30 rounded-full animate-ping"
+          style={{ animationDelay: '3s' }}
+        ></div>
       </div>
     </footer>
   );
 };
 
-export default Footer;
+export default HellboyFooter;

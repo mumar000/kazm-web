@@ -10,6 +10,7 @@ const HeroSection = () => {
           <h1 className="text-7xl lg:text-8xl 2xl:text-[160px] leading-none tracking-tight">
             KAZM
           </h1>
+
           <div className="relative -rotate-8 lg:-mt-6 -mt-4">
             <h2 className="text-8xl lg:text-9xl 2xl:text-[199px] caveat leading-none tracking-tight">
               a creative

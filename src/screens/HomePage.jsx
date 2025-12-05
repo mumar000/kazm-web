@@ -24,7 +24,7 @@ const HomePage = () => {
         <ComingSoon />
         {/* <AboutUs /> */}
         {/* <CoreValues /> */}
-        <ContactForm />
+
         <Footer />
       </SmoothScroll>
     </div>

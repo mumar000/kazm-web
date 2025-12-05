@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const ComingSoon = () => {
   const [formData, setFormData] = useState({
@@ -7,29 +7,10 @@ const ComingSoon = () => {
     email: '',
     message: '',
   });
-  const [timeLeft, setTimeLeft] = useState({
-    days: 32,
-    hours: 24,
-    mins: 8,
-  });
 
-  // Countdown timer logic
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setTimeLeft((prev) => {
-        if (prev.mins > 0) {
-          return { ...prev, mins: prev.mins - 1 };
-        } else if (prev.hours > 0) {
-          return { ...prev, hours: prev.hours - 1, mins: 59 };
-        } else if (prev.days > 0) {
-          return { ...prev, days: prev.days - 1, hours: 23, mins: 59 };
-        }
-        return prev;
-      });
-    }, 60000); // Update every minute
-
-    return () => clearInterval(timer);
-  }, []);
+  const [isBookOpen, setIsBookOpen] = useState(false);
+  const [currentPage, setCurrentPage] = useState(0); // 0 = Closed, 1,2,3 = Form Steps
+  const [direction, setDirection] = useState(1); // 1 = Next, -1 = Prev
 
   const handleChange = (e) => {
     setFormData({
@@ -38,103 +19,293 @@ const ComingSoon = () => {
     });
   };
 
+  const openBook = () => {
+    setIsBookOpen(true);
+    setCurrentPage(1);
+  };
+
+  const nextPage = () => {
+    if (currentPage < 3) {
+      setDirection(1);
+      setCurrentPage(currentPage + 1);
+    }
+  };
+
+  const prevPage = () => {
+    if (currentPage > 1) {
+      setDirection(-1);
+      setCurrentPage(currentPage - 1);
+    }
+  };
+
+  const closeBook = () => {
+    setIsBookOpen(false);
+    setTimeout(() => {
+      setCurrentPage(0);
+      setFormData({ name: '', email: '', message: '' });
+    }, 600); // Wait for close animation
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log('Form submitted:', formData);
-    setFormData({ name: '', email: '', message: '' });
+    // Add submission logic here
+    closeBook();
+  };
+
+  // Glass styles constant for consistency
+  const glassPanel = 'bg-black/40  backdrop-blur-2xl border border-white/20';
+
+  // Animation Variants for the Page Flip Effect
+  const pageVariants = {
+    enter: (direction) => ({
+      rotateY: direction > 0 ? 90 : -90, // Enters from 90deg (right) or -90deg (left)
+      opacity: 0,
+      transformOrigin: 'left center', // IMPORTANT: Anchors rotation to the spine
+    }),
+    center: {
+      rotateY: 0,
+      opacity: 1,
+      transition: {
+        duration: 0.6,
+        ease: [0.645, 0.045, 0.355, 1.0], // Cubic bezier for smooth paper feel
+      },
+      transformOrigin: 'left center',
+    },
+    exit: (direction) => ({
+      rotateY: direction > 0 ? -90 : 90, // Exits to -90deg (flip left) or 90deg (flip right)
+      opacity: 0,
+      transition: { duration: 0.4 },
+      transformOrigin: 'left center',
+    }),
   };
 
   return (
-    <div className="relative min-h-screen bg-[#1b1b1b] text-white overflow-hidden flex items-center justify-center">
-      {/* Moving "COMING SOON" Text at Top */}
-      <div className="absolute top-0 left-0 w-full overflow-hidden py-12">
+    <div className="relative min-h-screen bg-[#1b1b1b] text-white overflow-hidden flex items-center justify-center font-sans">
+      {/* Background Ambience */}
+
+      {/* Moving Text */}
+      <div className="absolute top-0 left-0 w-full overflow-hidden py-12 opacity-20 pointer-events-none">
         <motion.div
           className="flex whitespace-nowrap"
-          animate={{
-            x: [0, -2000],
-          }}
-          transition={{
-            duration: 20,
-            repeat: Infinity,
-            ease: 'linear',
-          }}
+          animate={{ x: [0, -2000] }}
+          transition={{ duration: 30, repeat: Infinity, ease: 'linear' }}
         >
           {[...Array(10)].map((_, i) => (
-            <span
-              key={i}
-              className="text-[120px] md:text-[180px] lg:text-[220px] font-black tracking-tight mx-12"
-            >
+            <span key={i} className="text-[120px] md:text-[200px] font-black tracking-tight mx-8">
               COMING SOON •
             </span>
           ))}
         </motion.div>
       </div>
 
-      {/* Center Form Container */}
-      <div className="relative z-10 w-full py-20 max-w-2xl px-6">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="bg-white/5 backdrop-blur-xl rounded-[40px] p-10 md:p-14 border border-white/10 shadow-2xl"
-        >
-          {/* Countdown Timer */}
-          <div className="flex justify-center gap-6 md:gap-12 mb-8">
-            <h1 className="text-6xl font-bold">Contact Us Now!</h1>
-          </div>
-
-          {/* Contact Form */}
-          <form onSubmit={handleSubmit} className="space-y-5 mb-6">
-            {/* Name Input */}
-            <div className="relative">
-              <input
-                type="text"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-                placeholder="Your Name"
-                className="w-full bg-white/10 backdrop-blur-md rounded-2xl px-6 py-4 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-white/30 border border-white/10 transition-all"
-                required
-              />
-            </div>
-
-            {/* Email Input */}
-            <div className="relative">
-              <input
-                type="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                placeholder="Email Address"
-                className="w-full bg-white/10 backdrop-blur-md rounded-2xl px-6 py-4 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-white/30 border border-white/10 transition-all"
-                required
-              />
-            </div>
-
-            {/* Message Textarea */}
-            <div className="relative">
-              <textarea
-                name="message"
-                value={formData.message}
-                onChange={handleChange}
-                placeholder="Your Message"
-                rows="4"
-                className="w-full bg-white/10 backdrop-blur-md rounded-2xl px-6 py-4 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-white/30 border border-white/10 transition-all resize-none"
-                required
-              ></textarea>
-            </div>
-
-            {/* Submit Button */}
-            <button
-              type="submit"
-              className="w-full bg-white text-black px-8 py-4 rounded-2xl font-semibold hover:bg-gray-200 transition-all duration-300 hover:scale-[1.02]"
+      {/* Main 3D Container */}
+      <div className="relative z-10 w-full max-w-5xl px-4" style={{ perspective: '2000px' }}>
+        <AnimatePresence mode="wait">
+          {/* STATE 1: BOOK CLOSED (COVER) */}
+          {!isBookOpen ? (
+            <motion.div
+              key="cover"
+              initial={{ opacity: 0, rotateY: 30, scale: 0.9 }}
+              animate={{ opacity: 1, rotateY: 0, scale: 1 }}
+              exit={{ opacity: 0, rotateY: -90, transition: { duration: 0.5 } }}
+              transition={{ duration: 0.8, type: 'spring' }}
+              className={`mx-auto max-w-xl ${glassPanel} rounded-3xl p-12 text-center`}
+              style={{ transformStyle: 'preserve-3d' }}
             >
-              Submit
-            </button>
-          </form>
+              <h1 className="text-6xl font-black mb-6 tracking-tighter">Hello.</h1>
+              <p className="text-xl text-gray-300 mb-10 leading-relaxed">
+                We are crafting a new experience. <br /> Join the waitlist to get early access.
+              </p>
+              <motion.button
+                onClick={openBook}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="bg-white text-black px-10 py-4 rounded-full font-bold text-lg hover:shadow-[0_0_20px_rgba(255,255,255,0.3)] transition-all"
+              >
+                Open Form
+              </motion.button>
+            </motion.div>
+          ) : (
+            // STATE 2: BOOK OPEN
+            <motion.div
+              key="book"
+              initial={{ rotateY: 90, opacity: 0 }}
+              animate={{ rotateY: 0, opacity: 1 }}
+              exit={{ opacity: 0, scale: 0.9 }}
+              transition={{ duration: 0.8, type: 'spring', bounce: 0.2 }}
+              className="flex flex-col md:flex-row shadow-2xl"
+              style={{ transformStyle: 'preserve-3d' }}
+            >
+              {/* LEFT PAGE (Static Info) */}
+              <div
+                className={`w-full md:w-1/2 ${glassPanel} rounded-t-3xl md:rounded-l-3xl md:rounded-tr-none p-10 md:p-14 relative z-10`}
+              >
+                <div className="h-full flex flex-col justify-between">
+                  <div>
+                    <h2 className="text-4xl font-bold mb-6">Let's Connect</h2>
+                    <div className="w-12 h-1 bg-blue-400 mb-8 rounded-full"></div>
+                    <p className="text-gray-300 leading-relaxed text-lg">
+                      Fill out the form on the right page. We read every message and will get back
+                      to you faster than you think.
+                    </p>
+                  </div>
 
-          {/* People Joined */}
-        </motion.div>
+                  <div className="mt-8">
+                    <div className="flex items-center gap-2 text-sm text-gray-400 uppercase tracking-widest mb-2">
+                      Progress
+                    </div>
+                    <div className="flex gap-2">
+                      {[1, 2, 3].map((step) => (
+                        <div
+                          key={step}
+                          className={`h-1.5 rounded-full transition-all duration-500 ${
+                            currentPage >= step ? 'w-8 bg-blue-400' : 'w-4 bg-white/20'
+                          }`}
+                        />
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* RIGHT PAGE (Dynamic Form Steps) */}
+              <div
+                className={`w-full md:w-1/2 ${glassPanel} rounded-b-3xl md:rounded-r-3xl md:rounded-bl-none p-10 md:p-14 relative perspective-[1000px] border-l-0 md:border-l border-white/10`}
+              >
+                <div className="h-full relative" style={{ perspective: '1000px' }}>
+                  <AnimatePresence custom={direction} mode="wait">
+                    {/* STEP 1: NAME */}
+                    {currentPage === 1 && (
+                      <motion.div
+                        key="step1"
+                        custom={direction}
+                        variants={pageVariants}
+                        initial="enter"
+                        animate="center"
+                        exit="exit"
+                        className="absolute inset-0 flex flex-col justify-center h-full backface-hidden"
+                      >
+                        <label className="text-gray-400 text-sm font-semibold uppercase tracking-wider mb-3">
+                          01. Identity
+                        </label>
+                        <h3 className="text-3xl font-bold mb-8">What's your name?</h3>
+                        <input
+                          type="text"
+                          name="name"
+                          value={formData.name}
+                          onChange={handleChange}
+                          autoFocus
+                          placeholder="Type your name here..."
+                          className="w-full bg-transparent border-b-2 border-white/20 py-4 text-2xl text-white placeholder-white/20 focus:outline-none focus:border-blue-400 transition-colors"
+                        />
+                        <div className="flex justify-between items-center mt-auto pt-8">
+                          <button
+                            onClick={closeBook}
+                            className="text-gray-400 hover:text-white transition-colors"
+                          >
+                            Close
+                          </button>
+                          <button
+                            onClick={nextPage}
+                            disabled={!formData.name}
+                            className="flex items-center gap-2 bg-white text-black px-6 py-3 rounded-xl font-semibold hover:bg-gray-200 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                          >
+                            Next <span className="text-xl">→</span>
+                          </button>
+                        </div>
+                      </motion.div>
+                    )}
+
+                    {/* STEP 2: EMAIL */}
+                    {currentPage === 2 && (
+                      <motion.div
+                        key="step2"
+                        custom={direction}
+                        variants={pageVariants}
+                        initial="enter"
+                        animate="center"
+                        exit="exit"
+                        className="absolute inset-0 flex flex-col justify-center h-full backface-hidden"
+                      >
+                        <label className="text-gray-400 text-sm font-semibold uppercase tracking-wider mb-3">
+                          02. Contact
+                        </label>
+                        <h3 className="text-3xl font-bold mb-8">Your email address?</h3>
+                        <input
+                          type="email"
+                          name="email"
+                          value={formData.email}
+                          onChange={handleChange}
+                          autoFocus
+                          placeholder="name@example.com"
+                          className="w-full bg-transparent border-b-2 border-white/20 py-4 text-2xl text-white placeholder-white/20 focus:outline-none focus:border-blue-400 transition-colors"
+                        />
+                        <div className="flex justify-between items-center mt-auto pt-8">
+                          <button
+                            onClick={prevPage}
+                            className="text-gray-400 hover:text-white transition-colors"
+                          >
+                            Back
+                          </button>
+                          <button
+                            onClick={nextPage}
+                            disabled={!formData.email}
+                            className="flex items-center gap-2 bg-white text-black px-6 py-3 rounded-xl font-semibold hover:bg-gray-200 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                          >
+                            Next <span className="text-xl">→</span>
+                          </button>
+                        </div>
+                      </motion.div>
+                    )}
+
+                    {/* STEP 3: MESSAGE */}
+                    {currentPage === 3 && (
+                      <motion.div
+                        key="step3"
+                        custom={direction}
+                        variants={pageVariants}
+                        initial="enter"
+                        animate="center"
+                        exit="exit"
+                        className="absolute inset-0 flex flex-col justify-center h-full backface-hidden"
+                      >
+                        <label className="text-gray-400 text-sm font-semibold uppercase tracking-wider mb-3">
+                          03. Thoughts
+                        </label>
+                        <h3 className="text-3xl font-bold mb-8">What's on your mind?</h3>
+                        <textarea
+                          name="message"
+                          value={formData.message}
+                          onChange={handleChange}
+                          autoFocus
+                          rows={3}
+                          placeholder="Tell us about your project..."
+                          className="w-full bg-transparent border-b-2 border-white/20 py-4 text-xl text-white placeholder-white/20 focus:outline-none focus:border-blue-400 transition-colors resize-none"
+                        />
+                        <div className="flex justify-between items-center mt-auto pt-8">
+                          <button
+                            onClick={prevPage}
+                            className="text-gray-400 hover:text-white transition-colors"
+                          >
+                            Back
+                          </button>
+                          <button
+                            onClick={handleSubmit}
+                            disabled={!formData.message}
+                            className="bg-blue-500 text-white px-8 py-3 rounded-xl font-semibold hover:bg-blue-400 transition-all disabled:opacity-50 shadow-[0_0_20px_rgba(59,130,246,0.4)]"
+                          >
+                            Submit
+                          </button>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </div>
   );

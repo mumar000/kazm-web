@@ -19,9 +19,14 @@ const HeroSectionII = () => {
         {/* Main Heading with Center Image */}
         <div className="relative flex items-center justify-center">
           {/* Large Text "ERONT ARAYA" split by image */}
-          <h1 className="text-[120px] z-30 md:text-[180px] lg:text-[220px] xl:text-[280px] font-black tracking-tighter leading-none text-slate-900/60">
-            KAZM
-          </h1>
+          <div className="flex flex-col items-center gap-2">
+            <h1 className="text-[120px] z-30 md:text-[180px] lg:text-[220px] xl:text-[280px] font-black tracking-tighter leading-none text-slate-900/60">
+              KAZM
+            </h1>
+            <p className="text-lg font-extrabold  -translate-y-6">
+              Founded by Umar Qayyum & Shahrukh Kazim
+            </p>
+          </div>
 
           {/* Center Image */}
           <div className="hidden absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[250px] h-[300px] md:w-[300px] md:h-[350px] lg:w-[350px] lg:h-[400px]">
