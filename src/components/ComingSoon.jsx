@@ -2,7 +2,11 @@ import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 
 const ComingSoon = () => {
-  const [email, setEmail] = useState('');
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: '',
+  });
   const [timeLeft, setTimeLeft] = useState({
     days: 32,
     hours: 24,
@@ -27,14 +31,21 @@ const ComingSoon = () => {
     return () => clearInterval(timer);
   }, []);
 
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Email submitted:', email);
-    setEmail('');
+    console.log('Form submitted:', formData);
+    setFormData({ name: '', email: '', message: '' });
   };
 
   return (
-    <div className="relative min-h-screen bg-[#1b1B1B] text-white overflow-hidden flex items-center justify-center">
+    <div className="relative min-h-screen bg-[#1b1b1b] text-white overflow-hidden flex items-center justify-center">
       {/* Moving "COMING SOON" Text at Top */}
       <div className="absolute top-0 left-0 w-full overflow-hidden py-12">
         <motion.div
@@ -87,24 +98,54 @@ const ComingSoon = () => {
             </div>
           </div>
 
-          {/* Email Form */}
-          <form onSubmit={handleSubmit} className="mb-6">
-            <div className="flex gap-3 bg-white/10 backdrop-blur-md rounded-full p-2 border border-gray-600/30">
+          {/* Contact Form */}
+          <form onSubmit={handleSubmit} className="space-y-5 mb-6">
+            {/* Name Input */}
+            <div className="relative">
               <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="Email Address"
-                className="flex-1 bg-transparent px-6 py-3 text-white placeholder-gray-400 focus:outline-none"
+                type="text"
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
+                placeholder="Your Name"
+                className="w-full bg-white/10 backdrop-blur-md rounded-2xl px-6 py-4 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-white/30 border border-white/10 transition-all"
                 required
               />
-              <button
-                type="submit"
-                className="bg-white text-black px-8 py-3 rounded-full font-medium hover:bg-gray-200 transition-colors"
-              >
-                Submit
-              </button>
             </div>
+
+            {/* Email Input */}
+            <div className="relative">
+              <input
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                placeholder="Email Address"
+                className="w-full bg-white/10 backdrop-blur-md rounded-2xl px-6 py-4 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-white/30 border border-white/10 transition-all"
+                required
+              />
+            </div>
+
+            {/* Message Textarea */}
+            <div className="relative">
+              <textarea
+                name="message"
+                value={formData.message}
+                onChange={handleChange}
+                placeholder="Your Message"
+                rows="4"
+                className="w-full bg-white/10 backdrop-blur-md rounded-2xl px-6 py-4 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-white/30 border border-white/10 transition-all resize-none"
+                required
+              ></textarea>
+            </div>
+
+            {/* Submit Button */}
+            <button
+              type="submit"
+              className="w-full bg-white text-black px-8 py-4 rounded-2xl font-semibold hover:bg-gray-200 transition-all duration-300 hover:scale-[1.02]"
+            >
+              Submit
+            </button>
           </form>
 
           {/* People Joined */}
