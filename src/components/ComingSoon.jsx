@@ -115,7 +115,7 @@ const ComingSoon = () => {
             >
               <h1 className="text-6xl font-black mb-6 tracking-tighter">Hello.</h1>
               <p className="text-xl text-gray-300 mb-10 leading-relaxed">
-                We are crafting a new experience.
+                Let’s Create What Moves Culture.
               </p>
               <motion.button
                 onClick={openBook}
@@ -123,7 +123,7 @@ const ComingSoon = () => {
                 whileTap={{ scale: 0.95 }}
                 className="bg-white cursor-pointer text-black px-10 py-4 rounded-full font-bold text-lg hover:shadow-[0_0_20px_rgba(255,255,255,0.3)] transition-all"
               >
-                Contact Form
+                Contact Us
               </motion.button>
             </motion.div>
           ) : (
