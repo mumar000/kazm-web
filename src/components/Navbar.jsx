@@ -25,8 +25,8 @@ const Navbar = () => {
           </div>
 
           {/* Mobile Menu Button */}
-          <button onClick={() => setIsOpen(!isOpen)} className="md:hidden text-white">
-            {isOpen ? <X size={24} /> : <Menu size={24} />}
+          <button onClick={() => setIsOpen(!isOpen)} className="md:hidden text-black">
+            {isOpen ? <X size={24} /> : <Menu size={24} strokeWidth={2} />}
           </button>
         </div>
       </div>

@@ -68,7 +68,7 @@ const HellboyFooter = () => {
           }`}
         >
           {/* Left */}
-          <div className="flex flex-col  gap-6">
+          <div className="flex flex-col items-center   gap-6">
             <div className="text-lg text-gray-400 mb-6 lg:mb-0 lg:max-w-md">
               <p className="mb-2 hover:text-gray-300 transition-colors duration-300">
                 Founded by Umar Qayyum & Shahrukh Kazim
@@ -76,7 +76,7 @@ const HellboyFooter = () => {
               <p className="hover:text-gray-300 transition-colors duration-300">KAZM™ 2025</p>
             </div>
             <div>
-              <img src="logo.svg" alt="Logo" className="w-40 " />
+              <img src="logo.svg" alt="Logo" className="w-40 py-4 " />
             </div>
           </div>
 
