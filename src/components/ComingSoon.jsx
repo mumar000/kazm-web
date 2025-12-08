@@ -81,7 +81,10 @@ const ComingSoon = () => {
   };
 
   return (
-    <div className="relative min-h-screen bg-[#1b1b1b] text-white overflow-hidden flex items-center justify-center font-sans">
+    <div
+      id="contact"
+      className="relative min-h-screen bg-[#1b1b1b] text-white overflow-hidden flex items-center justify-center font-sans"
+    >
       {/* Background Ambience */}
 
       {/* Moving Text */}

@@ -68,7 +68,7 @@ const HellboyFooter = () => {
           }`}
         >
           {/* Left */}
-          <div className="flex flex-col items-center   gap-6">
+          <div className="flex flex-col md:items-start items-center   gap-6">
             <div className="text-lg text-gray-400 mb-6 lg:mb-0 lg:max-w-md">
               <p className="mb-2 hover:text-gray-300 transition-colors duration-300">
                 Founded by Umar Qayyum & Shahrukh Kazim
@@ -101,8 +101,8 @@ const HellboyFooter = () => {
             </div>{' '} */}
 
             {/* Shahrukh Kazim Text */}
-            <div className="text-white font-serif italic hover:scale-105 transition-transform duration-300 cursor-pointer group">
-              <span className="text-2xl group-hover:text-gray-300 transition-colors duration-300">
+            <div className="text-white  hover:scale-105 transition-transform duration-300 cursor-pointer group">
+              <span className="text-xl group-hover:text-gray-300 transition-colors duration-300">
                 Email: info@kazm.co
               </span>
             </div>
