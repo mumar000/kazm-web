@@ -103,7 +103,7 @@ const HellboyFooter = () => {
             {/* Shahrukh Kazim Text */}
             <div className="text-white  hover:scale-105 transition-transform duration-300 cursor-pointer group">
               <span className="text-xl group-hover:text-gray-300 transition-colors duration-300">
-                Email: info@kazm.co
+                Email: info@kazm.io
               </span>
             </div>
           </div>
