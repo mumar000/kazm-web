@@ -1,5 +1,5 @@
 import { ExternalLink, Instagram, Youtube } from 'lucide-react';
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { FaMusic } from 'react-icons/fa';
 // import { Link } from "react-router-dom";
 // import cokeStudioLogo from '../asserts/coke studio.jpeg';
@@ -9,29 +9,9 @@ import { FaMusic } from 'react-icons/fa';
 const HellboyFooter = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [speechBubbleVisible, setSpeechBubbleVisible] = useState(false);
-  const footerRef = useRef(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          // Delay speech bubble animation
-          setTimeout(() => setSpeechBubbleVisible(true), 1000);
-        }
-      },
-      { threshold: 0.2 }
-    );
-
-    if (footerRef.current) {
-      observer.observe(footerRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, []);
 
   return (
-    <footer ref={footerRef} className="bg-[black] text-white relative overflow-hidden">
+    <footer className="bg-[black] text-white relative overflow-hidden">
       {/* Animated background elements */}
       <div className="absolute inset-0 pointer-events-none">
         {[...Array(10)].map((_, i) => (

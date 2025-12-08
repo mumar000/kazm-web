@@ -38,7 +38,7 @@ const HeroSectionII = () => {
         </div>
 
         {/* Bottom Text */}
-        <div className="absolute bottom-10 md:bottom-2 text-center text-white px-6">
+        <div className="absolute bottom-14 md:bottom-10 text-center text-white px-6">
           <p className="text-xs md:text-sm lg:text-base font-light tracking-wider uppercase">
             KAZM is a culture-forward collective shaping
           </p>
