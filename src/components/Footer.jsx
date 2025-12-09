@@ -17,7 +17,7 @@ const HellboyFooter = () => {
         if (entry.isIntersecting) {
           setIsVisible(true);
           // Delay speech bubble animation
-          setTimeout(() => setSpeechBubbleVisible(true), 200);
+          setTimeout(() => setSpeechBubbleVisible(true), 100);
         }
       },
       { threshold: 0.2 }
