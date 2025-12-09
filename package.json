@@ -5,10 +5,11 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "analyze": "vite build --mode analyze"
+    "analyze": "vite build --mode analyze",
+    "build": "vite build",
+    "postbuild": "node scripts/htaccess-copy.js"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.17",
