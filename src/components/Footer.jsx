@@ -1,4 +1,4 @@
-import { ExternalLink, Instagram, Youtube } from 'lucide-react';
+import { ExternalLink, Instagram, Mail, Youtube } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import { FaMusic } from 'react-icons/fa';
 // import { Link } from "react-router-dom";
@@ -70,9 +70,6 @@ const HellboyFooter = () => {
           {/* Left */}
           <div className="flex flex-col md:items-start items-center   gap-6">
             <div className="text-lg text-gray-400 mb-6 lg:mb-0 lg:max-w-md">
-              <p className="mb-2 hover:text-gray-300 transition-colors duration-300">
-                Founded by Umar Qayyum & Shahrukh Kazim
-              </p>
               <p className="hover:text-gray-300 transition-colors duration-300">KAZM™ 2025</p>
             </div>
             <div>
@@ -101,9 +98,11 @@ const HellboyFooter = () => {
             </div>{' '} */}
 
             {/* Shahrukh Kazim Text */}
-            <div className="text-white  hover:scale-105 transition-transform duration-300 cursor-pointer group">
-              <span className="text-xl group-hover:text-gray-300 transition-colors duration-300">
-                Email: info@kazm.io
+            <div className="text-white hover:scale-105 transition-transform duration-300 cursor-pointer group">
+              <span className="text-xl group-hover:text-gray-300 transition-colors duration-300 flex items-center space-x-2">
+                {/* Using the Lucide Mail icon */}
+                <Mail size={24} className="flex-shrink-0" />
+                <span>info@kazm.io</span>
               </span>
             </div>
           </div>
