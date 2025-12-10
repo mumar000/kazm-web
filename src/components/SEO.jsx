@@ -2,11 +2,11 @@ import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
 const SEO = ({ 
-  title = 'My Landing Page', 
-  description = 'Modern, fast, and beautiful landing page',
-  keywords = 'landing page, react, modern web',
-  image = '/og-image.jpg',
-  author = 'Your Company'
+  title = 'KAZM — Creative Motion Collective', 
+  description = 'KAZM is a culture-forward collective shaping experiences across events, music, motion, direction, and storytelling.',
+  keywords = 'KAZM, creative collective, culture-forward, events, music, motion design, direction, storytelling',
+  image = '/logo.png',
+  author = 'KAZM Studio'
 }) => {
   const location = useLocation();
   const currentUrl = `${window.location.origin}${location.pathname}`;
@@ -26,6 +26,17 @@ const SEO = ({
       element.setAttribute('content', content);
     };
 
+    // Update or create canonical link
+    const ensureCanonical = (href) => {
+      let link = document.querySelector('link[rel="canonical"]');
+      if (!link) {
+        link = document.createElement('link');
+        link.setAttribute('rel', 'canonical');
+        document.head.appendChild(link);
+      }
+      link.setAttribute('href', href);
+    };
+
     // Standard meta tags
     updateMetaTag('description', description);
     updateMetaTag('keywords', keywords);
@@ -43,6 +54,9 @@ const SEO = ({
     updateMetaTag('twitter:title', title);
     updateMetaTag('twitter:description', description);
     updateMetaTag('twitter:image', image);
+
+    // Canonical URL
+    ensureCanonical(currentUrl);
   }, [title, description, keywords, image, author, currentUrl]);
 
   return null;
