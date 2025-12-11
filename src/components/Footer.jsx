@@ -1,4 +1,4 @@
-import { ExternalLink, Instagram, Mail, Youtube } from 'lucide-react';
+import { ExternalLink, Instagram, Mail, Youtube, Twitter, Facebook } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import { FaMusic } from 'react-icons/fa';
 // import { Link } from "react-router-dom";
@@ -146,7 +146,7 @@ const HellboyFooter = () => {
                   rel="noopener noreferrer"
                   className="text-gray-400 hover:text-red-500 transition-all duration-300 hover:scale-110 hover:rotate-12"
                 >
-                  <Youtube className="h-7 w-5" />
+                  <Youtube size={25} />
                   <span className="sr-only">YouTube</span>
                 </a>
 
@@ -157,8 +157,32 @@ const HellboyFooter = () => {
                   rel="noopener noreferrer"
                   className="text-gray-400 hover:text-pink-500 transition-all duration-300 hover:scale-110 hover:rotate-12"
                 >
-                  <Instagram className="h-5 w-5" />
+                  <Instagram size={22} />
                   <span className="sr-only">Instagram</span>
+                </a>
+
+                {/* Twitter */}
+                <a
+                  href="#"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-400 hover:text-blue-400 transition-all duration-300 hover:scale-110 hover:rotate-12"
+                  aria-label="Twitter"
+                >
+                  <Twitter size={22} />
+                  <span className="sr-only">Twitter</span>
+                </a>
+
+                {/* Facebook */}
+                <a
+                  href="#"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-400 hover:text-blue-600 transition-all duration-300 hover:scale-110 hover:rotate-12"
+                  aria-label="Facebook"
+                >
+                  <Facebook size={22} />
+                  <span className="sr-only">Facebook</span>
                 </a>
 
                 {/* Spotify */}

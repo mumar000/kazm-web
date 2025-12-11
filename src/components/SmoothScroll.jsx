@@ -18,7 +18,7 @@ export default function SmoothScroll({ children }) {
       orientation: 'vertical', // Vertical scrolling
       gestureOrientation: 'vertical',
       smoothWheel: true, // Smooth mouse wheel scrolling
-      wheelMultiplier: 1, // Scroll speed multiplier (lower = slower)
+      wheelMultiplier: 0.4, // Scroll speed multiplier (lower = slower)
       touchMultiplier: 2,
       infinite: false,
     });

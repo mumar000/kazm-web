@@ -1,12 +1,12 @@
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
-const SEO = ({ 
-  title = 'KAZM — Creative Motion Collective', 
+const SEO = ({
+  title = 'KAZM — Creative Motion Collective',
   description = 'KAZM is a culture-forward collective shaping experiences across events, music, motion, direction, and storytelling.',
   keywords = 'KAZM, creative collective, culture-forward, events, music, motion design, direction, storytelling',
   image = '/logo.png',
-  author = 'KAZM Studio'
+  author = 'KAZM Studio',
 }) => {
   const location = useLocation();
   const currentUrl = `${window.location.origin}${location.pathname}`;

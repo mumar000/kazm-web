@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { CheckCircle } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const ComingSoon = () => {
@@ -50,7 +51,9 @@ const ComingSoon = () => {
     e.preventDefault();
     console.log('Form submitted:', formData);
     // Add submission logic here
-    closeBook();
+    // Show confirmation page instead of closing immediately
+    setDirection(1);
+    setCurrentPage(4);
   };
 
   // Glass styles constant for consistency
@@ -299,6 +302,44 @@ const ComingSoon = () => {
                             className="bg-blue-500 text-white px-8 py-3 rounded-xl font-semibold hover:bg-white transition-all disabled:opacity-50 shadow-[0_0_20px_rgba(59,130,246,0.4)]"
                           >
                             Submit
+                          </button>
+                        </div>
+                      </motion.div>
+                    )}
+
+                    {/* STEP 4: CONFIRMATION */}
+                    {currentPage === 4 && (
+                      <motion.div
+                        key="step4"
+                        custom={direction}
+                        variants={pageVariants}
+                        initial="enter"
+                        animate="center"
+                        exit="exit"
+                        className="absolute inset-0 flex flex-col justify-center items-center h-full text-center px-4 backface-hidden"
+                      >
+                        <CheckCircle className="w-16 h-16 text-green-400 mb-6" />
+                        <h3 className="text-3xl font-bold mb-3">Thanks for reaching out!</h3>
+                        <p className="text-gray-300 max-w-md mb-8">
+                          We’ve received your message and will get back to you shortly.
+                        </p>
+                        <div className="flex gap-4">
+                          <button
+                            onClick={closeBook}
+                            className="bg-white text-black px-8 py-3 rounded-xl font-semibold hover:bg-gray-200 transition-all"
+                          >
+                            Close
+                          </button>
+                          <button
+                            onClick={() => {
+                              // Reset to start a new entry without closing the book
+                              setFormData({ name: '', email: '', message: '' });
+                              setDirection(-1);
+                              setCurrentPage(1);
+                            }}
+                            className="border border-white/30 text-white px-8 py-3 rounded-xl font-semibold hover:bg-white/10 transition-all"
+                          >
+                            Send another
                           </button>
                         </div>
                       </motion.div>
