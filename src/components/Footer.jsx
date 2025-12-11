@@ -1,71 +1,42 @@
-import { ExternalLink, Instagram, Mail, Youtube, Twitter, Facebook } from 'lucide-react';
-import { useEffect, useRef, useState } from 'react';
-import { FaMusic } from 'react-icons/fa';
+import { Instagram, Mail, Youtube, Twitter, Facebook } from 'lucide-react';
+import { motion } from 'framer-motion';
 // import { Link } from "react-router-dom";
 // import cokeStudioLogo from '../asserts/coke studio.jpeg';
 // import img from '../asserts/image-1.png';
 // import pepsiLogo from '../asserts/papsi.png';
 
 const HellboyFooter = () => {
-  const [isVisible, setIsVisible] = useState(false);
-  const [speechBubbleVisible, setSpeechBubbleVisible] = useState(false);
-  const footerRef = useRef(null);
+  const fadeInUp = {
+    hidden: { opacity: 0, y: 24 },
+    show: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+  };
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          // Delay speech bubble animation
-          setTimeout(() => setSpeechBubbleVisible(true), 100);
-        }
-      },
-      { threshold: 0.2 }
-    );
-
-    if (footerRef.current) {
-      observer.observe(footerRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, []);
+  const scaleXIn = {
+    hidden: { opacity: 0, scaleX: 0, originX: 0.5 },
+    show: { opacity: 1, scaleX: 1, originX: 0.5, transition: { duration: 0.6 } },
+  };
 
   return (
-    <footer ref={footerRef} className="bg-[black] text-white relative overflow-hidden">
-      {/* Animated background elements */}
-      <div className="absolute inset-0 pointer-events-none">
-        {[...Array(10)].map((_, i) => (
-          <div
-            key={i}
-            className={`absolute w-1 h-1 bg-red-500/10 rounded-full transition-all duration-1000 ${
-              isVisible ? 'animate-pulse opacity-100' : 'opacity-0'
-            }`}
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 3}s`,
-              transitionDelay: `${i * 200}ms`,
-            }}
-          />
-        ))}
-      </div>
-
+    <motion.footer
+      className="bg-[black] text-white relative overflow-hidden"
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: true, amount: 0.2 }}
+    >
       {/* Main Footer Content */}
       <div className="container mx-auto px-4 py-10 relative z-10">
         {/* Hellboy Character and Logo */}
 
         {/* Animated Separator Line */}
-        <div
-          className={`w-full h-px bg-gradient-to-r from-transparent via-gray-700 to-transparent mb-12 transition-all duration-1000 delay-900 ${
-            isVisible ? 'scale-x-100 opacity-100' : 'scale-x-0 opacity-0'
-          }`}
-        ></div>
+        <motion.div
+          variants={scaleXIn}
+          className="w-full h-px bg-gradient-to-r from-transparent via-gray-700 to-transparent mb-12"
+        />
 
         {/* Copyright and Logos */}
-        <div
-          className={`flex flex-col lg:flex-row items-center justify-between mb-12 transition-all duration-1000 delay-1100 ${
-            isVisible ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
-          }`}
+        <motion.div
+          variants={fadeInUp}
+          className="flex flex-col lg:flex-row items-center justify-between mb-12"
         >
           {/* Left */}
           <div className="flex flex-col md:items-start items-center   gap-6">
@@ -108,16 +79,15 @@ const HellboyFooter = () => {
           </div>
 
           {/* Right - Animated Decorative Elements */}
-        </div>
+        </motion.div>
       </div>
 
       {/* Bottom Footer */}
       <div className="border-t border-gray-800 relative">
         <div className="container mx-auto px-4 py-6">
-          <div
-            className={`flex flex-col lg:flex-row items-center justify-between text-sm transition-all duration-1000 delay-1300 ${
-              isVisible ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
-            }`}
+          <motion.div
+            variants={fadeInUp}
+            className="flex flex-col lg:flex-row items-center justify-between text-sm"
           >
             {/* Left Links */}
             <div className="flex flex-wrap items-center justify-center space-x-6 mb-4 lg:mb-0">
@@ -188,32 +158,21 @@ const HellboyFooter = () => {
                 {/* Spotify */}
               </div>
             </div>
-          </div>
+          </motion.div>
 
           {/* Copyright */}
-          <div
-            className={`text-center mt-4 text-xs text-gray-500 transition-all duration-1000 delay-1500 hover:text-gray-400 ${
-              isVisible ? 'translate-y-0 opacity-100' : 'translate-y-2 opacity-0'
-            }`}
+          <motion.div
+            variants={fadeInUp}
+            className="text-center mt-4 text-xs text-gray-500 hover:text-gray-400"
           >
             COPYRIGHT 2025, Powered by &nbsp;
             <a href="https://techxudo.com" target="_blank">
               Techxudo
             </a>
-          </div>
+          </motion.div>
         </div>
-
-        {/* Floating elements */}
-        <div
-          className="absolute top-4 left-10 w-1 h-1 bg-red-500/30 rounded-full animate-ping"
-          style={{ animationDelay: '2s' }}
-        ></div>
-        <div
-          className="absolute bottom-4 right-20 w-1.5 h-1.5 bg-yellow-500/30 rounded-full animate-ping"
-          style={{ animationDelay: '3s' }}
-        ></div>
       </div>
-    </footer>
+    </motion.footer>
   );
 };
 
