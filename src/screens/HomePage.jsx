@@ -8,6 +8,9 @@ import HeroSectionII from '../components/HeroSectionII';
 import ContactForm from '../components/ContactUs';
 import ComingSoon from '../components/ComingSoon';
 import SmoothScroll from '../components/SmoothScroll';
+import CapabilitiesCard from '../components/CapabilitiesCard';
+import GallerySection from '../components/GallerySection';
+// import CapabilitiesCard from '../components/CapabilitiesCard';
 
 const HomePage = () => {
   return (
@@ -22,6 +25,9 @@ const HomePage = () => {
         <Navbar />
         <HeroSectionII />
         <ComingSoon />
+        <GallerySection />
+        <CapabilitiesCard />
+
         {/* <AboutUs /> */}
         {/* <CoreValues /> */}
 
