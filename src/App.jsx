@@ -2,7 +2,10 @@ import { useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import HomePage from './screens/HomePage';
+import About from './screens/About/About';
 import KazmLoader from './components/KazmLoader';
+import Navbar from './components/Navbar';
+import HellboyFooter from './components/Footer';
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -44,10 +47,15 @@ function App() {
     <>
       {/* App content renders immediately under the loader for smooth reveal */}
       <motion.div initial={{ opacity: 1 }} animate={{ opacity: 1 }}>
+
         <Router>
+          <Navbar />
           <Routes>
             <Route path="/" element={<HomePage />} />
+            <Route path="/about" element={<About />} />
           </Routes>
+          <HellboyFooter />
+
         </Router>
       </motion.div>
 
