@@ -98,7 +98,7 @@ const JourneyCard = ({ item, index }) => {
             <div className="relative w-full h-full transition-all duration-700 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
 
                 {/* --- FRONT FACE --- */}
-                <div className="absolute inset-0 w-full h-full bg-[#0a0a0a] border border-white/10 rounded-[2rem] p-8 flex flex-col justify-between [backface-visibility:hidden] overflow-hidden shadow-2xl">
+                <div className="absolute inset-0 w-full h-full bg-[#0a0a0a] border border-white/10 rounded-[4px] p-8 flex flex-col justify-between [backface-visibility:hidden] overflow-hidden shadow-2xl">
 
                     {/* Internal Glow */}
                     <div className={`absolute top-0 right-0 w-64 h-64 bg-gradient-to-br ${item.color} rounded-full blur-[80px] opacity-20 -translate-y-1/2 translate-x-1/2`} />
@@ -136,7 +136,7 @@ const JourneyCard = ({ item, index }) => {
 
                 {/* --- BACK FACE --- */}
                 <div
-                    className={`absolute inset-0 w-full h-full bg-[#0a0a0a] border border-white/20 rounded-[2rem] p-8 flex flex-col [transform:rotateY(180deg)] [backface-visibility:hidden] overflow-hidden relative`}
+                    className={`absolute inset-0 w-full h-full bg-[#0a0a0a] border border-white/20 rounded-[4px] p-8 flex flex-col [transform:rotateY(180deg)] [backface-visibility:hidden] overflow-hidden relative`}
                 >
                     {/* Full Color Overlay on Back */}
                     <div className={`absolute inset-0 bg-gradient-to-br ${item.color} opacity-10`} />
