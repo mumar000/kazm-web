@@ -304,7 +304,7 @@ export default function CapabilitiesCard() {
         <div className="min-h-screen relative z-10 w-full bg-[#050505] flex items-center justify-center py-20 font-sans overflow-hidden">
             {/* Grid Background */}
             <div
-                className="fixed inset-0 opacity-10 pointer-events-none"
+                className="absolute inset-0 opacity-30 pointer-events-none"
                 style={{
                     backgroundImage: 'linear-gradient(#222 1px, transparent 1px), linear-gradient(90deg, #222 1px, transparent 1px)',
                     backgroundSize: '40px 40px'
@@ -368,8 +368,8 @@ export default function CapabilitiesCard() {
                             key={index}
                             onClick={() => setCurrentIndex(index)}
                             className={`h-2 transition-all duration-500 ${index === currentIndex
-                                    ? 'w-12 bg-[#2E5BFF] shadow-[0_0_10px_rgba(46,91,255,0.5)]'
-                                    : 'w-3 bg-white/20 hover:bg-white/40'
+                                ? 'w-12 bg-[#2E5BFF] shadow-[0_0_10px_rgba(46,91,255,0.5)]'
+                                : 'w-3 bg-white/20 hover:bg-white/40'
                                 }`}
                         />
                     ))}

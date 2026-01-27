@@ -99,7 +99,7 @@ const ComingSoon = () => {
         >
           {[...Array(10)].map((_, i) => (
             <span key={i} className="text-[120px] md:text-[200px] font-black tracking-tight mx-8">
-              COMING SOON •
+              CONTACT US •
             </span>
           ))}
         </motion.div>
@@ -165,9 +165,8 @@ const ComingSoon = () => {
                       {[1, 2, 3].map((step) => (
                         <div
                           key={step}
-                          className={`h-1.5 rounded-full transition-all duration-500 ${
-                            currentPage >= step ? 'w-8 bg-white' : 'w-4 bg-white/20'
-                          }`}
+                          className={`h-1.5 rounded-full transition-all duration-500 ${currentPage >= step ? 'w-8 bg-white' : 'w-4 bg-white/20'
+                            }`}
                         />
                       ))}
                     </div>
