@@ -1,4 +1,8 @@
+import { useState } from "react";
+
 const WhyKazm = () => {
+    const [hoveredIndex, setHoveredIndex] = useState(null);
+
     const reasons = [
         {
             title: "The Tech-Enabled Artist",
@@ -19,41 +23,96 @@ const WhyKazm = () => {
     ];
 
     return (
-        <div className="bg-[#FCFCFC] text-black rounded-none md:rounded-3xl p-8 md:p-16 relative overflow-hidden">
-            {/* Texture */}
-            <div className="absolute inset-0 opacity-[0.03]" style={{
-                backgroundImage: 'linear-gradient(#000 1px, transparent 1px), linear-gradient(90deg, #000 1px, transparent 1px)',
-                backgroundSize: '20px 20px'
-            }} />
+        <div className="relative w-full bg-[#050505] py-20 md:py-32">
+            {/* Grid Background */}
+            <div
+                className="absolute inset-0 opacity-10 pointer-events-none"
+                style={{
+                    backgroundImage: 'linear-gradient(#222 1px, transparent 1px), linear-gradient(90deg, #222 1px, transparent 1px)',
+                    backgroundSize: '40px 40px'
+                }}
+            />
 
-            <div className="relative z-10">
-                <h2 className="text-5xl md:text-8xl font-black tracking-tighter mb-12 uppercase">
-                    Why KAZM?
-                </h2>
+            <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-8">
+                {/* Section Header */}
+                <div className="mb-16 border-l-2 border-[#2E5BFF] pl-6">
+                    <h2 className="text-5xl md:text-7xl font-black text-[#FCFCFC] tracking-tighter uppercase mb-2">
+                        Why KAZM?
+                    </h2>
+                    <p className="text-gray-400 font-mono uppercase tracking-widest text-sm">
+                        The Competitive Edge
+                    </p>
+                </div>
 
-                <div className="grid md:grid-cols-2 gap-8 mb-12">
-                    {reasons.map((item, i) => (
+                {/* Bento Grid - 2x2 Layout */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                    {reasons.map((item, index) => (
                         <div
-                            key={i}
-                            className="border-t-2 border-black pt-6 group hover:border-[#2E5BFF] transition-colors duration-300"
+                            key={index}
+                            className="relative group"
+                            onMouseEnter={() => setHoveredIndex(index)}
+                            onMouseLeave={() => setHoveredIndex(null)}
                         >
-                            <h4 className="text-2xl font-bold mb-3 uppercase group-hover:text-[#2E5BFF] transition-colors">
-                                {item.title}
-                            </h4>
-                            <p className="text-gray-600 font-medium leading-relaxed">
-                                {item.content}
-                            </p>
+                            {/* Main Card */}
+                            <div className="relative bg-[#0a0a0a] border border-white/10 p-8 transition-all duration-300 hover:border-[#2E5BFF] min-h-[200px] flex flex-col">
+                                {/* Mesh Pattern Background */}
+                                <div
+                                    className="absolute inset-0 opacity-5"
+                                    style={{
+                                        backgroundImage: `radial-gradient(circle at 1px 1px, rgb(148 163 184) 1px, transparent 0)`,
+                                        backgroundSize: '40px 40px'
+                                    }}
+                                />
+
+                                {/* Content */}
+                                <div className="relative z-10 flex-1 flex flex-col">
+                                    {/* Number Badge */}
+                                    <div className="w-8 h-8 bg-[#2E5BFF] flex items-center justify-center mb-6 group-hover:shadow-[0_0_20px_rgba(46,91,255,0.4)] transition-shadow duration-300">
+                                        <span className="text-[#FCFCFC] font-mono text-sm font-bold">
+                                            0{index + 1}
+                                        </span>
+                                    </div>
+
+                                    {/* Title */}
+                                    <h3 className="text-2xl font-black text-[#FCFCFC] mb-4 uppercase tracking-tight">
+                                        {item.title}
+                                    </h3>
+
+                                    {/* Divider */}
+                                    <div className="h-[1px] w-12 bg-white/20 mb-6" />
+
+                                    {/* Description */}
+                                    <p className="text-sm text-gray-400 leading-relaxed font-medium">
+                                        {item.content}
+                                    </p>
+                                </div>
+
+                                {/* Hover Glow Effect */}
+                                <div className="absolute inset-0 bg-gradient-to-br from-[#2E5BFF]/0 to-[#2E5BFF]/0 group-hover:from-[#2E5BFF]/5 group-hover:to-transparent transition-all duration-500" />
+                            </div>
+
+                            {/* Bottom Accent Bar */}
+                            <div className={`h-1 bg-[#2E5BFF] transition-all duration-300 ${hoveredIndex === index ? 'w-full' : 'w-0'
+                                }`} />
                         </div>
                     ))}
                 </div>
 
-                <div className="mt-12 flex items-center gap-4">
-                    <div className="h-px flex-1 bg-black/20" />
-                    <span className="text-xs font-mono text-[#2E5BFF] tracking-widest">CALIFORNIA BUILT</span>
-                    <div className="h-px flex-1 bg-black/20" />
+                {/* California Built Banner */}
+                <div className="bg-[#0a0a0a] border border-white/10 p-6 flex items-center justify-center">
+                    <div className="flex items-center gap-6 w-full max-w-2xl">
+                        <div className="h-[1px] flex-1 bg-white/20" />
+                        <span className="text-xs font-mono text-[#2E5BFF] tracking-[0.3em] uppercase font-bold">
+                            California Built
+                        </span>
+                        <div className="h-[1px] flex-1 bg-white/20" />
+                    </div>
                 </div>
+
+
             </div>
         </div>
     );
 };
-export default WhyKazm
+
+export default WhyKazm;
