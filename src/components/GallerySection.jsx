@@ -52,14 +52,14 @@ const GallerySection = ({ items, radius = 250, damping = 0.5 }) => {
             style={{ '--r': `${radius}px` }}
         >
             {/* Background Gradient Accent - New Color: Indigo/Violet */}
-            <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#2e2b52]/20 rounded-full blur-[120px] pointer-events-none" />
+            {/* <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#2e2b52]/20 rounded-full blur-[120px] pointer-events-none" /> */}
 
             {/* Collage Grid */}
             <div className="grid grid-cols-12 auto-rows-[220px] md:auto-rows-[280px] gap-4 relative z-10 max-w-7xl mx-auto">
                 {data.map((c, i) => (
                     <article
                         key={i}
-                        className={`${c.span} group relative rounded-2xl overflow-hidden border border-white/10 bg-[#242424]/40 backdrop-blur-2xl transition-all duration-500 hover:border-white/30`}
+                        className={`${c.span} group relative rounded-2xl overflow-hidden border border-white/10  backdrop-blur-2xl transition-all duration-500 hover:border-white/30`}
                     >
                         {/* Image Layer */}
                         <div className="absolute inset-0 z-0">
@@ -89,7 +89,7 @@ const GallerySection = ({ items, radius = 250, damping = 0.5 }) => {
             <div
                 className="absolute inset-0 pointer-events-none z-30"
                 style={{
-                    backdropFilter: 'brightness(0.65) grayscale(1)',
+                    backdropFilter: 'brightness(0.9) grayscale(1)',
                     WebkitBackdropFilter: 'brightness(0.35) grayscale(1) blur(2px)',
                     maskImage: 'radial-gradient(circle var(--r) at var(--x) var(--y), transparent 0%, transparent 40%, black 100%)',
                     WebkitMaskImage: 'radial-gradient(circle var(--r) at var(--x) var(--y), transparent 0%, transparent 40%, black 100%)',
