@@ -75,9 +75,9 @@ const GallerySection = ({ items, radius = 250, damping = 0.5 }) => {
 
                             <div className="max-h-0 opacity-0 group-hover:max-h-24 group-hover:opacity-100 transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] overflow-hidden">
                                 <p className="text-gray-400 text-sm mb-4 line-clamp-2">{c.desc}</p>
-                                <button className="flex items-center gap-2 text-white text-[10px] font-bold uppercase tracking-widest border-b border-white/20 pb-1 hover:border-white transition-colors">
+                                {/* <button className="flex items-center gap-2 text-white text-[10px] font-bold uppercase tracking-widest border-b border-white/20 pb-1 hover:border-white transition-colors">
                                     View <ChevronRight size={12} />
-                                </button>
+                                </button> */}
                             </div>
                         </div>
                     </article>
