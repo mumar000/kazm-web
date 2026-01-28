@@ -1,23 +1,14 @@
 import { Compass, Rocket, Target } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const ManifestoHero = () => {
-    const [scrollY, setScrollY] = useState(0);
-    const [isHovered, setIsHovered] = useState(false);
     const [rotation, setRotation] = useState(0);
     const [hoveredItem, setHoveredItem] = useState(null);
+    const [isHovered, setIsHovered] = useState(false);
+    const [flipState, setFlipState] = useState('front'); // 'front', 'flipping', 'back'
 
-    // Handle scroll
-    useState(() => {
-        const handleScroll = () => {
-            setScrollY(window.scrollY);
-        };
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
-    });
-
-    // Handle rotation
-    useState(() => {
+    // Rotation animation
+    useEffect(() => {
         let animationId;
         let lastTime = Date.now();
 
@@ -26,7 +17,7 @@ const ManifestoHero = () => {
             const delta = now - lastTime;
             lastTime = now;
 
-            const speed = isHovered ? 0.003 : 0.006;
+            const speed = isHovered ? 0.002 : 0.005;
             setRotation(prev => (prev + delta * speed) % 360);
 
             animationId = requestAnimationFrame(animate);
@@ -34,12 +25,18 @@ const ManifestoHero = () => {
 
         animationId = requestAnimationFrame(animate);
         return () => cancelAnimationFrame(animationId);
-    });
+    }, [isHovered]);
 
-    // Parallax calculations
-    const yOffset = Math.min(scrollY * 0.3, 250);
-    const opacity = Math.max(1 - scrollY / 500, 0);
-    const bgY = scrollY * 0.2;
+    // Handle hover state changes
+    useEffect(() => {
+        if (hoveredItem !== null) {
+            setFlipState('flipping');
+            setTimeout(() => setFlipState('back'), 300);
+        } else {
+            setFlipState('flipping');
+            setTimeout(() => setFlipState('front'), 300);
+        }
+    }, [hoveredItem]);
 
     const items = [
         {
@@ -63,57 +60,118 @@ const ManifestoHero = () => {
     ];
 
     return (
-        <div className="relative h-[110vh] w-full overflow-hidden bg-[#050505] flex items-center justify-center font-sans text-white">
-            {/* --- PARALLAX BACKGROUND --- */}
+        <div className="relative h-screen w-full overflow-hidden bg-[#050505] flex items-center justify-center">
+            {/* Radial Overlay Background - Black outside to transparent center */}
             <div
-                className="absolute inset-0 z-0"
-            // style={{ transform: `translateY(${bgY}px)` }}
-            >
-                <div
-                    className="absolute inset-0 bg-cover bg-center opacity-40"
-                    style={{ backgroundImage: `url('https://images.unsplash.com/photo-1614728263952-84ea256f9679?q=80&w=3408&auto=format&fit=crop')` }}
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/90 to-[#050505]/60" />
-            </div>
-            {/* --- MAIN CONTENT --- */}
-            <div
-                className="relative z-10 w-full h-[800px] flex items-center justify-center"
+                className="absolute inset-0 z-1 pointer-events-none"
                 style={{
-                    // transform: `translateY(${-yOffset}px)`,
-                    // opacity: opacity,
-                    perspective: '1000px'
+                    // 10% is where it starts fading, 85% is where it becomes fully black
+                    background: 'radial-gradient(circle at center, transparent 10%, #050505 85%)'
                 }}
-            >
-                {/* --- CENTER CORE --- */}
-                <div className="absolute  h-full flex flex-col items-center justify-center select-none mix-blend-screen">
-                    <div className="w-2 h-2 rounded-full bg-[#2E5BFF] shadow-[0_0_25px_5px_#2E5BFF] mb-6 animate-pulse" />
+            />
+            <div className="bg-linear-to-b z-1 from-black to-transparent absolute top-0 w-full h-20"></div>
+            <div className="bg-linear-to-t z-1 from-black to-transparent absolute bottom-0 w-full h-20"></div>
 
-                    <h1 className="text-5xl md:text-7xl inter font-light tracking-[0.2em] uppercase text-center mix-blend-overlay opacity-50">
-                        Mani
-                    </h1>
-                    <h1 className="text-5xl md:text-7xl inter font-bold tracking-[0.05em] uppercase text-center text-white mt-[-10px] drop-shadow-2xl">
-                        Festo
-                    </h1>
+            {/* Subtle Background Image */}
+            <div className="absolute  inset-0 z-0 opacity-30">
+                <div
+                    className="absolute inset-0 bg-cover bg-center"
+                    style={{
+                        backgroundImage: `url('https://images.unsplash.com/photo-1614728263952-84ea256f9679?q=80&w=3408&auto=format&fit=crop')`,
+                        filter: 'blur(2px)'
+                    }}
+                />
+            </div>
 
-                    <div className="h-[2px] w-24 bg-gradient-to-r from-transparent via-[#2E5BFF] to-transparent mt-6 opacity-100 shadow-[0_0_15px_#2E5BFF]" />
+            {/* Additional radial glow effect */}
+            <div
+                className="absolute inset-0 z-[1]"
+                style={{
+                    background: 'radial-gradient(circle at center, rgba(46,91,255,0.05) 0%, transparent 60%)'
+                }}
+            />
+
+            {/* Main Content Container */}
+            <div className="relative z-10 w-full h-full flex items-center justify-center">
+                {/* Center Content Area with Flip Animation */}
+                <div className="absolute w-[500px] h-[400px] flex items-center justify-center" style={{ perspective: '2000px' }}>
+                    {/* Front Side - Manifesto */}
+                    <div
+                        className="absolute w-full h-full flex flex-col items-center justify-center transition-all duration-500"
+                        style={{
+                            transform: flipState === 'front' ? 'rotateY(0deg)' : 'rotateY(90deg)',
+                            opacity: flipState === 'front' ? 1 : 0,
+                            backfaceVisibility: 'hidden'
+                        }}
+                    >
+                        <div className="w-3 h-3 rounded-full bg-[#2E5BFF] shadow-[0_0_30px_8px_rgba(46,91,255,0.6)] mb-8 animate-pulse-slow" />
+
+                        <h1 className="text-7xl font-extralight tracking-[0.3em] uppercase text-[#FCFCFC]/60 mb-[-8px]" style={{ fontFamily: 'Inter Tight, sans-serif' }}>
+                            Mani
+                        </h1>
+                        <h1 className="text-8xl font-black tracking-[0.08em] uppercase text-[#FCFCFC]" style={{ fontFamily: 'Inter Tight, sans-serif', textShadow: '0 0 40px rgba(46,91,255,0.3)' }}>
+                            Festo
+                        </h1>
+
+                        <div className="h-[1px] w-32 bg-gradient-to-r from-transparent via-[#2E5BFF] to-transparent mt-8 shadow-[0_0_20px_rgba(46,91,255,0.5)]" />
+                    </div>
+
+                    {/* Back Side - Description Card */}
+                    <div
+                        className="absolute w-full h-full flex items-center justify-center transition-all duration-500"
+                        style={{
+                            transform: flipState === 'back' ? 'rotateY(0deg)' : 'rotateY(-90deg)',
+                            opacity: flipState === 'back' ? 1 : 0,
+                            backfaceVisibility: 'hidden'
+                        }}
+                    >
+                        {hoveredItem !== null && (
+                            <div className="w-[500px] bg-[#FCFCFC] border border-[#2E5BFF] rounded-sm p-8 shadow-[0_0_60px_rgba(46,91,255,0.3)]">
+                                {/* Header */}
+                                <div className="flex items-center gap-4 mb-6 pb-4 border-b border-[#2E5BFF]/20">
+                                    <div className="w-12 h-12 rounded-sm bg-[#2E5BFF] flex items-center justify-center shadow-lg">
+                                        {(() => {
+                                            const Icon = items[hoveredItem].icon;
+                                            return <Icon className="text-[#FCFCFC]" size={24} strokeWidth={2} />;
+                                        })()}
+                                    </div>
+                                    <div>
+                                        <h4 className="text-lg font-black text-[#050505] uppercase tracking-[0.15em]" style={{ fontFamily: 'Inter Tight, sans-serif' }}>
+                                            {items[hoveredItem].title}
+                                        </h4>
+                                        <p className="text-xs text-[#2E5BFF] uppercase tracking-[0.25em] font-extrabold roboto-mono">
+                                            {items[hoveredItem].sub}
+                                        </p>
+                                    </div>
+                                </div>
+
+                                {/* Description */}
+                                <p className="text-sm roboto-mono text-[#050505] leading-relaxed  mb-6" >
+                                    {items[hoveredItem].description}
+                                </p>
+
+                                {/* Bottom Accent */}
+                                <div className="pt-4 border-t border-[#2E5BFF]/20">
+                                    <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-[#2E5BFF] to-transparent" />
+                                </div>
+                            </div>
+                        )}
+                    </div>
                 </div>
 
-                {/* --- ORBIT TRACK --- */}
-                <div className="absolute border-[2px] border-white/15 w-[650px] h-[650px] rounded-full pointer-events-none shadow-[0_0_40px_-10px_rgba(255,255,255,0.05)]" />
+                {/* Orbit Ring */}
+                <div className="absolute border border-[#FCFCFC]/10 w-[630px] h-[630px] rounded-full pointer-events-none shadow-[inset_0_0_40px_rgba(46,91,255,0.1)]" />
 
-                {/* --- ROTATING SYSTEM --- */}
+                {/* Rotating System */}
                 <div
-                    className="absolute h-full w-full h-full flex items-center justify-center cursor-pointer"
+                    className="absolute w-full h-full flex items-center justify-center"
                     style={{ transform: `rotate(${rotation}deg)` }}
                     onMouseEnter={() => setIsHovered(true)}
                     onMouseLeave={() => setIsHovered(false)}
                 >
-                    {/* <div className="absolute top-0 h-full left-1/2 -translate-x-1/2 -translate-y-[325px] w-1 h-20 bg-gradient-to-b from-transparent via-[#2E5BFF] to-transparent blur-sm" /> */}
-
                     {items.map((item, i) => {
                         const rotationStep = 360 / items.length;
                         const itemAngle = i * rotationStep;
-                        const isItemHovered = hoveredItem === i;
 
                         return (
                             <div
@@ -121,10 +179,10 @@ const ManifestoHero = () => {
                                 className="absolute top-1/2 left-1/2 w-full h-0 pointer-events-auto"
                                 style={{ transform: `translate(-50%, -50%) rotate(${itemAngle}deg)` }}
                             >
-                                <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-[325px]">
-                                    {/* --- COUNTER-ROTATION --- */}
+                                <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-[350px]">
+                                    {/* Counter-rotation wrapper */}
                                     <div
-                                        className="relative w-48 flex flex-col items-center justify-center group"
+                                        className="relative w-56 flex flex-col items-center justify-center group cursor-pointer"
                                         style={{
                                             transform: `rotate(${-rotation - itemAngle}deg)`,
                                             transition: 'transform 0.05s linear'
@@ -132,81 +190,39 @@ const ManifestoHero = () => {
                                         onMouseEnter={() => setHoveredItem(i)}
                                         onMouseLeave={() => setHoveredItem(null)}
                                     >
-                                        {/* Icon Wrapper */}
-                                        <div className="relative mb-6 transition-transform duration-500 group-hover:scale-110 z-10">
-                                            <div className="absolute inset-0 bg-[#2E5BFF] opacity-0 blur-[30px] rounded-full group-hover:opacity-40 transition-opacity duration-500" />
+                                        {/* Connection Line to Center */}
+                                        <div className="absolute top-1/2 left-1/2 w-[1px] h-[350px] bg-gradient-to-b from-transparent via-[#2E5BFF]/20 to-transparent -translate-x-1/2 group-hover:via-[#2E5BFF]/40 transition-all duration-500" />
 
-                                            <div className="relative w-14 h-14 rounded-full border border-white/20 bg-[#0a0a0a] flex items-center justify-center z-10 group-hover:border-[#2E5BFF] transition-colors duration-500 shadow-xl">
-                                                <item.icon className="text-gray-400 group-hover:text-[#2E5BFF] transition-colors duration-500" size={24} strokeWidth={1.5} />
+                                        {/* Icon Container */}
+                                        <div className="relative mb-6 transition-all duration-500 group-hover:scale-125 z-10">
+                                            {/* Glow effect */}
+                                            <div className="absolute inset-0 bg-[#2E5BFF] opacity-0 blur-[40px] rounded-full group-hover:opacity-60 transition-all duration-500" />
+
+                                            {/* Icon circle */}
+                                            <div className="relative w-16 h-16 rounded-sm border border-[#FCFCFC]/20 bg-[#050505] flex items-center justify-center group-hover:border-[#2E5BFF] group-hover:bg-[#050505] transition-all duration-500 shadow-[0_0_20px_rgba(0,0,0,0.8)]">
+                                                <item.icon
+                                                    className="text-[#FCFCFC]/60 group-hover:text-[#2E5BFF] transition-colors duration-500"
+                                                    size={28}
+                                                    strokeWidth={1.5}
+                                                />
                                             </div>
 
-                                            <div className="absolute top-full left-1/2 w-[1px] h-8 bg-gradient-to-b from-white/30 to-transparent -translate-x-1/2 -z-10 group-hover:from-[#2E5BFF] transition-colors duration-500" />
+                                            {/* Bottom connector line */}
+                                            <div className="absolute top-full left-1/2 w-[1px] h-6 bg-gradient-to-b from-[#FCFCFC]/20 to-transparent -translate-x-1/2 group-hover:from-[#2E5BFF] transition-colors duration-500" />
                                         </div>
 
                                         {/* Typography */}
                                         <div className="text-center space-y-2 z-10">
-                                            <h3 className="text-xl inter font-bold uppercase tracking-widest text-white drop-shadow-md">
+                                            <h3 className="text-xl font-black uppercase tracking-[0.2em] text-[#FCFCFC] transition-all duration-500 group-hover:text-[#2E5BFF] group-hover:tracking-[0.25em]" style={{ fontFamily: 'Inter Tight, sans-serif' }}>
                                                 {item.title}
                                             </h3>
-                                            <p className="text-xs text-[#2E5BFF] roboto-mono uppercase tracking-[0.2em] opacity-90">
+                                            <p className="text-[10px] text-[#2E5BFF]/80 uppercase tracking-[0.25em] font-bold group-hover:text-[#2E5BFF] transition-all duration-500" style={{ fontFamily: 'Roboto Mono, monospace' }}>
                                                 {item.sub}
                                             </p>
                                         </div>
 
-                                        {/* --- POPUP DESCRIPTION --- */}
-                                        <div
-                                            className={`absolute top-1/2 -translate-y-1/2 w-96 transition-all duration-500 ${isItemHovered
-                                                ? 'opacity-100 scale-100 pointer-events-auto'
-                                                : 'opacity-0 scale-95 pointer-events-none'
-                                                }`}
-                                            style={{
-                                                left: i === 0 ? '100%' : i === 1 ? '100%' : 'auto',
-                                                right: i === 2 ? '100%' : 'auto',
-                                                marginLeft: i === 0 || i === 1 ? '2rem' : '0',
-                                                marginRight: i === 2 ? '2rem' : '0'
-                                            }}
-                                        >
-                                            {/* Connection Line */}
-                                            <div
-                                                className="absolute top-1/2 -translate-y-1/2 w-8 h-[2px] bg-gradient-to-r from-[#2E5BFF] to-transparent"
-                                                style={{
-                                                    left: i === 2 ? 'auto' : '-2rem',
-                                                    right: i === 2 ? '-2rem' : 'auto',
-                                                    transform: i === 2 ? 'translateY(-50%) rotate(180deg)' : 'translateY(-50%)'
-                                                }}
-                                            />
-
-                                            {/* Light Card */}
-                                            <div className={`relative z-${20 * i} bg-[#FCFCFC] border-2 border-[#2E5BFF] rounded-2xl p-6 shadow-2xl`}>
-
-                                                <div className="relative z-10">
-                                                    {/* Header */}
-                                                    <div className="flex items-center gap-3 mb-4 pb-3 border-b-2 border-[#2E5BFF]/20">
-                                                        <div className="w-10 h-10 rounded-full bg-[#2E5BFF] flex items-center justify-center shadow-lg">
-                                                            <item.icon className="text-white" size={20} strokeWidth={2.5} />
-                                                        </div>
-                                                        <div>
-                                                            <h4 className="text-base inter font-black text-black uppercase tracking-wider">
-                                                                {item.title}
-                                                            </h4>
-                                                            <p className="text-[10px] text-[#2E5BFF] roboto-mono uppercase tracking-widest font-bold">
-                                                                {item.sub}
-                                                            </p>
-                                                        </div>
-                                                    </div>
-
-                                                    {/* Description */}
-                                                    <p className="text-sm text-black leading-relaxed font-medium">
-                                                        {item.description}
-                                                    </p>
-
-                                                    {/* Bottom Accent */}
-                                                    <div className="mt-4 pt-3 border-t border-[#2E5BFF]/20">
-                                                        <div className="h-[2px] w-full bg-gradient-to-r from-transparent via-[#2E5BFF] to-transparent" />
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        {/* Hover indicator */}
+                                        <div className="mt-4 w-2 h-2 rounded-full bg-transparent group-hover:bg-[#2E5BFF] transition-all duration-300 shadow-[0_0_15px_rgba(46,91,255,0.8)]" />
                                     </div>
                                 </div>
                             </div>
@@ -215,15 +231,21 @@ const ManifestoHero = () => {
                 </div>
             </div>
 
-
-
             <style>{`
-                @keyframes pulse {
-                    0%, 100% { opacity: 1; }
-                    50% { opacity: 0.5; }
+                @import url('https://fonts.googleapis.com/css2?family=Inter+Tight:wght@200;800;900&family=Roboto+Mono:wght@700&display=swap');
+                
+                @keyframes pulse-slow {
+                    0%, 100% { 
+                        opacity: 1;
+                        transform: scale(1);
+                    }
+                    50% { 
+                        opacity: 0.6;
+                        transform: scale(1.1);
+                    }
                 }
-                .animate-pulse {
-                    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+                .animate-pulse-slow {
+                    animation: pulse-slow 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
                 }
             `}</style>
         </div>

@@ -7,7 +7,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
-export default function SmoothScroll({ children }) {
+const SmoothScroll = ({ children }) => {
   const lenisRef = useRef(null);
 
   useEffect(() => {
@@ -43,3 +43,4 @@ export default function SmoothScroll({ children }) {
 
   return <>{children}</>;
 }
+export default SmoothScroll

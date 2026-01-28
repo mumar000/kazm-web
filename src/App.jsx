@@ -6,6 +6,7 @@ import About from './screens/About/About';
 import KazmLoader from './components/KazmLoader';
 import Navbar from './components/Navbar';
 import HellboyFooter from './components/Footer';
+import SmoothScroll from './components/SmoothScroll.jsx';
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -47,7 +48,7 @@ function App() {
     <>
       {/* App content renders immediately under the loader for smooth reveal */}
       <motion.div initial={{ opacity: 1 }} animate={{ opacity: 1 }}>
-
+        <SmoothScroll />
         <Router>
           <Navbar />
           <Routes>

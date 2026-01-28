@@ -15,7 +15,7 @@ const HeroSectionII = () => {
       </div>
 
       {/* Content Container */}
-      <div className="relative z-10 flex flex-col items-center justify-center h-full px-4">
+      <div className="relative z-10 bg-linear-to-t from-[#2E5BFF]/10 via-transparent to-[#2E5BFF]/40 flex flex-col items-center justify-center h-full px-4">
         {/* Main Heading with Center Image */}
         <div className="relative flex items-center justify-center">
           {/* Large Text "ERONT ARAYA" split by image */}

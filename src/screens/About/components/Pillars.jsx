@@ -177,12 +177,12 @@ const Pillars = () => {
                                 </div>
 
                                 {/* CTA */}
-                                <div className="mt-8 pt-6 border-t border-white/10">
+                                {/* <div className="mt-8 pt-6 border-t border-white/10">
                                     <button className="inline-flex items-center gap-2 px-6 py-3 bg-[#2E5BFF] text-white font-bold uppercase text-xs tracking-widest hover:bg-[#FCFCFC] hover:text-[#2E5BFF] transition-all duration-300 border border-[#2E5BFF]">
                                         <span>Explore {services[activeIndex].tag}</span>
                                         <ArrowRight size={16} />
                                     </button>
-                                </div>
+                                </div> */}
                             </div>
                         </div>
 
@@ -199,21 +199,7 @@ const Pillars = () => {
                     </div>
                 </div>
 
-                {/* Bottom Stats */}
-                <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-4">
-                    <div className="bg-[#0a0a0a] border border-white/10 p-6 flex justify-between items-center hover:border-[#2E5BFF] transition-colors duration-300">
-                        <span className="roboto-mono text-xs text-gray-500 uppercase tracking-widest">Services</span>
-                        <span className="font-black text-3xl text-[#FCFCFC]">03</span>
-                    </div>
-                    <div className="bg-[#0a0a0a] border border-white/10 p-6 flex justify-between items-center hover:border-[#2E5BFF] transition-colors duration-300">
-                        <span className="roboto-mono text-xs text-gray-500 uppercase tracking-widest">Approach</span>
-                        <span className="font-black text-3xl text-[#FCFCFC]">360°</span>
-                    </div>
-                    <div className="bg-[#0a0a0a] border border-white/10 p-6 flex justify-between items-center hover:border-[#2E5BFF] transition-colors duration-300">
-                        <span className="roboto-mono text-xs text-gray-500 uppercase tracking-widest">Impact</span>
-                        <span className="font-black text-3xl text-[#FCFCFC]">∞</span>
-                    </div>
-                </div>
+
             </div>
 
             <style>{`
