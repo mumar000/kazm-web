@@ -84,27 +84,6 @@ const GallerySection = ({ items, radius = 250, damping = 0.5 }) => {
                 ))}
             </div>
 
-            {/* --- VISIONARY MASK LAYER --- */}
-            {/* Darkens and Grayscales everything except the mouse radius */}
-            <div
-                className="absolute inset-0 pointer-events-none z-30"
-                style={{
-                    backdropFilter: 'brightness(0.9) grayscale(1)',
-                    WebkitBackdropFilter: 'brightness(0.35) grayscale(1) blur(2px)',
-                    maskImage: 'radial-gradient(circle var(--r) at var(--x) var(--y), transparent 0%, transparent 40%, black 100%)',
-                    WebkitMaskImage: 'radial-gradient(circle var(--r) at var(--x) var(--y), transparent 0%, transparent 40%, black 100%)',
-                }}
-            />
-
-            {/* Glowing Mouse Ring */}
-            <div
-                className="absolute inset-0 pointer-events-none z-40"
-                style={{
-                    background: 'rgba(255,255,255,0.001)',
-                    maskImage: 'radial-gradient(circle var(--r) at var(--x) var(--y), rgba(99, 102, 241, 0.15) 0%, transparent 100%)',
-                    WebkitMaskImage: 'radial-gradient(circle var(--r) at var(--x) var(--y), rgba(99, 102, 241, 0.15) 0%, transparent 100%)',
-                }}
-            />
         </div>
     );
 };

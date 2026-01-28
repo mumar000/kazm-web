@@ -74,7 +74,6 @@ const ManifestoHero = () => {
                     style={{ backgroundImage: `url('https://images.unsplash.com/photo-1614728263952-84ea256f9679?q=80&w=3408&auto=format&fit=crop')` }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/90 to-[#050505]/60" />
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,#050505_80%)]" />
             </div>
             {/* --- MAIN CONTENT --- */}
             <div
