@@ -49,14 +49,7 @@ const CustomerJourney = () => {
             {/* Sticky Container */}
             <div className="sticky top-0 h-screen flex flex-col justify-center overflow-hidden">
 
-                {/* Background Grid & Ambient Effects */}
-                <div className="absolute inset-0 z-0">
-                    <div
-                        className="absolute inset-0 opacity-10"
-                        style={{ backgroundImage: 'linear-gradient(#333 1px, transparent 1px), linear-gradient(90deg, #333 1px, transparent 1px)', backgroundSize: '40px 40px' }}
-                    />
-                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] bg-[#2E5BFF]/10 blur-[120px] rounded-full pointer-events-none" />
-                </div>
+
 
                 {/* Static Header Elements */}
                 <div className="absolute top-10 left-8 md:left-20 z-20">
@@ -64,8 +57,8 @@ const CustomerJourney = () => {
                         title="The Loop"
                         subtitle="Scroll to Explore"
                         className="text-left"
-                        titleClassName="text-white"
-                        subtitleClassName="text-gray-400"
+                        titleClassName="text-white inter"
+                        subtitleClassName="text-gray-400 roboto-mono"
                     />
                 </div>
 
@@ -76,7 +69,7 @@ const CustomerJourney = () => {
                 >
                     {/* Introductory Text Node (Optional, gives context before cards) */}
                     <div className="w-[300px] shrink-0 text-right pr-12 hidden md:block">
-                        <span className="text-[#2E5BFF] font-mono text-xs uppercase tracking-widest block mb-4">Start Here</span>
+                        <span className="text-[#2E5BFF] roboto-mono text-xs uppercase tracking-widest block mb-4">Start Here</span>
                         <ArrowRight className="ml-auto text-white/50" size={32} />
                     </div>
 
@@ -87,7 +80,7 @@ const CustomerJourney = () => {
                 </motion.div>
 
                 {/* Footer / Progress Hint */}
-                <div className="absolute bottom-10 left-1/2 -translate-x-1/2 text-white/30 font-mono text-xs uppercase tracking-[0.2em] z-20">
+                <div className="absolute bottom-10 left-1/2 -translate-x-1/2 text-white/30 roboto-mono text-xs uppercase tracking-[0.2em] z-20">
                     KAZM Customer Journey
                 </div>
             </div>
@@ -109,16 +102,16 @@ const JourneyCard = ({ item, index }) => {
 
                     <div className="relative z-10">
                         <div className="flex justify-between items-start mb-8">
-                            <span className="text-[#2E5BFF] font-mono font-bold text-xs uppercase tracking-widest border border-[#2E5BFF]/30 px-3 py-1 rounded-full">
+                            <span className="text-[#2E5BFF] roboto-mono font-bold text-xs uppercase tracking-widest border border-[#2E5BFF]/30 px-3 py-1 rounded-full">
                                 {item.phase}
                             </span>
                             <span className="text-4xl font-black text-white/10">0{index + 1}</span>
                         </div>
 
-                        <h3 className="text-4xl font-black text-white mb-3 uppercase tracking-tight leading-[0.9]">
+                        <h3 className="text-4xl inter font-black text-white mb-3 uppercase tracking-tight leading-[0.9]">
                             {item.title}
                         </h3>
-                        <p className="text-white/50 font-mono text-xs uppercase tracking-widest mb-6">
+                        <p className="text-white/50 roboto-mono text-xs uppercase tracking-widest mb-6">
                             {item.subtitle}
                         </p>
 
@@ -130,7 +123,7 @@ const JourneyCard = ({ item, index }) => {
                     </div>
 
                     {/* Bottom Action Hint */}
-                    <div className="flex items-center gap-2 text-white/40 text-xs font-mono uppercase mt-auto">
+                    <div className="flex items-center gap-2 text-white/40 text-xs roboto-mono uppercase mt-auto">
                         <div className="w-8 h-8 rounded-full border border-white/20 flex items-center justify-center group-hover:bg-[#2E5BFF] group-hover:border-[#2E5BFF] group-hover:text-white transition-colors">
                             <ArrowRight size={14} />
                         </div>
@@ -148,10 +141,10 @@ const JourneyCard = ({ item, index }) => {
 
                     <div className="relative z-10 h-full flex flex-col">
                         <div className="mb-6 border-b border-white/10 pb-4">
-                            <span className="text-[#2E5BFF] font-mono text-[10px] uppercase tracking-widest mb-2 block">
+                            <span className="text-[#2E5BFF] roboto-mono text-[10px] uppercase tracking-widest mb-2 block">
                                 Deliverables
                             </span>
-                            <h4 className="text-xl font-bold text-white uppercase tracking-tight">
+                            <h4 className="text-xl inter font-bold text-white uppercase tracking-tight">
                                 What we build
                             </h4>
                         </div>
@@ -168,7 +161,7 @@ const JourneyCard = ({ item, index }) => {
                         </ul>
 
                         <div className="mt-auto text-center pt-4">
-                            <p className="text-white/30 text-[10px] font-mono uppercase tracking-widest">
+                            <p className="text-white/30 text-[10px] roboto-mono uppercase tracking-widest">
                                 KAZM Infrastructure
                             </p>
                         </div>

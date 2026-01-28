@@ -20,7 +20,7 @@ const HeroSectionII = () => {
         <div className="relative flex items-center justify-center">
           {/* Large Text "ERONT ARAYA" split by image */}
           <div className="flex flex-col items-center gap-2">
-            <h1 className="text-[120px] z-30 md:text-[180px] lg:text-[220px] xl:text-[280px] font-black tracking-tighter leading-none text-slate-900/60">
+            <h1 className="text-[120px] z-30 md:text-[180px] lg:text-[220px] xl:text-[280px] inter font-black tracking-tighter leading-none text-slate-900/60">
               KAZM
             </h1>
           </div>
@@ -34,18 +34,18 @@ const HeroSectionII = () => {
             />
           </div>
 
-          <h1 className="text-[120px] z-30 md:text-[180px] lg:text-[220px] xl:text-[280px] font-black tracking-tighter leading-none text-slate-900/60"></h1>
+          <h1 className="text-[120px] z-30 md:text-[180px] lg:text-[220px] xl:text-[280px] inter font-black tracking-tighter leading-none text-slate-900/60"></h1>
         </div>
 
         {/* Bottom Text */}
         <div className="absolute bottom-25 md:bottom-10 text-center text-white px-6">
-          <p className="text-xs md:text-sm lg:text-base font-light tracking-wider uppercase">
+          <p className="text-xs md:text-sm lg:text-base roboto-mono font-light tracking-wider uppercase">
             KAZM is a culture-forward collective shaping
           </p>
-          <p className="text-xs md:text-sm lg:text-base font-light tracking-wider uppercase">
+          <p className="text-xs md:text-sm lg:text-base roboto-mono font-light tracking-wider uppercase">
             experiences across Events, Music, Motion,
           </p>
-          <p className="text-xs md:text-sm lg:text-base font-light tracking-wider uppercase">
+          <p className="text-xs md:text-sm lg:text-base roboto-mono font-light tracking-wider uppercase">
             Direction, and Storytelling.
           </p>
         </div>

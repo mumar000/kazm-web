@@ -71,7 +71,7 @@ const GallerySection = ({ items, radius = 250, damping = 0.5 }) => {
                         {/* Text Layer */}
                         <div className="relative z-10 p-6 h-full flex flex-col justify-end">
                             <span className="text-white/30 text-[10px] font-bold uppercase tracking-[0.3em] mb-1">{c.subtitle}</span>
-                            <h3 className="text-2xl font-black text-white mb-2 tracking-tighter leading-none">{c.title}</h3>
+                            <h3 className="text-2xl inter font-black text-white mb-2 tracking-tighter leading-none">{c.title}</h3>
 
                             <div className="max-h-0 opacity-0 group-hover:max-h-24 group-hover:opacity-100 transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] overflow-hidden">
                                 <p className="text-gray-400 text-sm mb-4 line-clamp-2">{c.desc}</p>

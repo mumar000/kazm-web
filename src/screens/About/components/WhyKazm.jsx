@@ -32,9 +32,9 @@ const WhyKazm = () => {
                 <SectionHeading
                     title="Why KAZM?"
                     subtitle="The Competitive Edge"
-                    className="mb-16  pl-6"
-                    titleClassName="text-[#FCFCFC] text-5xl md:text-7xl"
-                    subtitleClassName="text-gray-400"
+                    className="mb-16 "
+                    titleClassName="text-[#FCFCFC] text-5xl md:text-7xl inter"
+                    subtitleClassName="text-gray-400 roboto-mono"
                 />
 
                 {/* Bento Grid - 2x2 Layout */}
@@ -48,26 +48,18 @@ const WhyKazm = () => {
                         >
                             {/* Main Card */}
                             <div className="relative bg-[#0a0a0a] border border-white/10 p-8 transition-all duration-300 hover:border-[#2E5BFF] min-h-[200px] flex flex-col">
-                                {/* Mesh Pattern Background */}
-                                <div
-                                    className="absolute inset-0 opacity-5"
-                                    style={{
-                                        backgroundImage: `radial-gradient(circle at 1px 1px, rgb(148 163 184) 1px, transparent 0)`,
-                                        backgroundSize: '40px 40px'
-                                    }}
-                                />
 
                                 {/* Content */}
                                 <div className="relative z-10 flex-1 flex flex-col">
                                     {/* Number Badge */}
                                     <div className="w-8 h-8 bg-[#2E5BFF] flex items-center justify-center mb-6 group-hover:shadow-[0_0_20px_rgba(46,91,255,0.4)] transition-shadow duration-300">
-                                        <span className="text-[#FCFCFC] font-mono text-sm font-bold">
+                                        <span className="text-[#FCFCFC] roboto-mono text-sm font-bold">
                                             0{index + 1}
                                         </span>
                                     </div>
 
                                     {/* Title */}
-                                    <h3 className="text-2xl font-black text-[#FCFCFC] mb-4 uppercase tracking-tight">
+                                    <h3 className="text-2xl inter font-black text-[#FCFCFC] mb-4 uppercase tracking-tight">
                                         {item.title}
                                     </h3>
 
@@ -95,7 +87,7 @@ const WhyKazm = () => {
                 <div className="bg-[#0a0a0a] border border-white/10 p-6 flex items-center justify-center">
                     <div className="flex items-center gap-6 w-full max-w-2xl">
                         <div className="h-[1px] flex-1 bg-white/20" />
-                        <span className="text-xs font-mono text-[#2E5BFF] tracking-[0.3em] uppercase font-bold">
+                        <span className="text-xs roboto-mono text-[#2E5BFF] tracking-[0.3em] uppercase font-bold">
                             California Built
                         </span>
                         <div className="h-[1px] flex-1 bg-white/20" />

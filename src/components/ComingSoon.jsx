@@ -89,14 +89,6 @@ const ComingSoon = () => {
       id="contact"
       className="relative min-h-screen bg-[#050505] text-[#FCFCFC] overflow-hidden flex items-center justify-center font-sans"
     >
-      {/* --- GRID BACKGROUND (Industrial Texture) --- */}
-      <div
-        className="fixed inset-0 opacity-10 pointer-events-none"
-        style={{
-          backgroundImage: 'linear-gradient(#333 1px, transparent 1px), linear-gradient(90deg, #333 1px, transparent 1px)',
-          backgroundSize: '40px 40px'
-        }}
-      />
 
       {/* --- MOVING TEXT (Background Ambience) --- */}
       <div className="absolute top-0 left-0 w-full overflow-hidden py-12 opacity-5 pointer-events-none select-none">
@@ -132,8 +124,8 @@ const ComingSoon = () => {
                 title="HELLO."
                 description="LET'S CREATE WHAT MOVES CULTURE."
                 className="mb-10"
-                titleClassName="text-6xl md:text-8xl font-black tracking-tighter text-[#FCFCFC]"
-                descriptionClassName="text-sm md:text-base font-mono uppercase tracking-[0.2em] text-[#2E5BFF] mt-4"
+                titleClassName="text-6xl md:text-8xl inter font-black tracking-tighter text-[#FCFCFC]"
+                descriptionClassName="text-sm md:text-base roboto-mono uppercase tracking-[0.2em] text-[#2E5BFF] mt-4"
               />
 
               {/* Industrial Button */}
@@ -143,7 +135,7 @@ const ComingSoon = () => {
                 whileTap={{ scale: 0.98 }}
                 className="group relative inline-flex items-center gap-3 px-10 py-4 bg-[#2E5BFF] border border-[#2E5BFF] rounded-[2px] text-white overflow-hidden transition-all hover:bg-white hover:text-[#2E5BFF]"
               >
-                <span className="relative z-10 font-mono font-bold uppercase tracking-widest text-sm">
+                <span className="relative z-10 roboto-mono font-bold uppercase tracking-widest text-sm">
                   Initialize Contact
                 </span>
                 <ArrowRight size={16} className="relative z-10" />
@@ -169,16 +161,16 @@ const ComingSoon = () => {
                   <div>
                     <div className="flex items-center gap-2 mb-6">
                       <div className="w-2 h-2 bg-[#2E5BFF]" />
-                      <span className="font-mono text-xs text-[#2E5BFF] tracking-widest uppercase">System IO</span>
+                      <span className="roboto-mono text-xs text-[#2E5BFF] tracking-widest uppercase">System IO</span>
                     </div>
 
                     <SectionHeading
                       title="LET'S CONNECT"
                       className=""
-                      titleClassName="text-4xl md:text-5xl font-black tracking-tighter text-white text-left mb-6 uppercase"
+                      titleClassName="text-4xl md:text-5xl inter font-black tracking-tighter text-white text-left mb-6 uppercase"
                     />
 
-                    <p className="text-gray-400 font-mono text-xs leading-relaxed tracking-wide uppercase border-l border-[#2E5BFF] pl-4 py-2">
+                    <p className="text-gray-400 roboto-mono text-xs leading-relaxed tracking-wide uppercase border-l border-[#2E5BFF] pl-4 py-2">
                                             // Data Entry Required<br />
                       We analyze every transmission.<br />
                       Response time: Optimized.
@@ -187,7 +179,7 @@ const ComingSoon = () => {
 
                   {/* Industrial Progress Indicators */}
                   <div className="mt-12">
-                    <div className="flex items-center gap-2 text-xs font-mono text-gray-500 uppercase tracking-widest mb-3">
+                    <div className="flex items-center gap-2 text-xs roboto-mono text-gray-500 uppercase tracking-widest mb-3">
                       Sequence 0{currentPage} / 03
                     </div>
                     <div className="flex gap-1">
@@ -223,7 +215,7 @@ const ComingSoon = () => {
                         exit="exit"
                         className="absolute inset-0 flex flex-col justify-center h-full backface-hidden"
                       >
-                        <label className="text-[#2E5BFF] text-xs font-mono font-bold uppercase tracking-widest mb-4">
+                        <label className="text-[#2E5BFF] text-xs roboto-mono font-bold uppercase tracking-widest mb-4">
                                                     // 01. Identity
                         </label>
                         <h3 className="text-3xl font-black uppercase tracking-tight mb-8">What's your name?</h3>
@@ -234,19 +226,19 @@ const ComingSoon = () => {
                           onChange={handleChange}
                           autoFocus
                           placeholder="ENTER DESIGNATION..."
-                          className="w-full bg-transparent border-b border-white/20 py-4 text-xl font-mono text-white placeholder-white/20 focus:outline-none focus:border-[#2E5BFF] transition-colors rounded-none"
+                          className="w-full bg-transparent border-b border-white/20 py-4 text-xl roboto-mono text-white placeholder-white/20 focus:outline-none focus:border-[#2E5BFF] transition-colors rounded-none"
                         />
                         <div className="flex justify-between items-center mt-auto pt-8">
                           <button
                             onClick={closeBook}
-                            className="text-gray-500 hover:text-white font-mono text-xs uppercase tracking-widest transition-colors"
+                            className="text-gray-500 hover:text-white roboto-mono text-xs uppercase tracking-widest transition-colors"
                           >
                             Terminate
                           </button>
                           <button
                             onClick={nextPage}
                             disabled={!formData.name}
-                            className="flex items-center gap-2 bg-[#FCFCFC] text-black px-6 py-3 rounded-[2px] font-mono font-bold text-xs uppercase tracking-widest hover:bg-[#2E5BFF] hover:text-white transition-all disabled:opacity-20 disabled:cursor-not-allowed"
+                            className="flex items-center gap-2 bg-[#FCFCFC] text-black px-6 py-3 rounded-[2px] roboto-mono font-bold text-xs uppercase tracking-widest hover:bg-[#2E5BFF] hover:text-white transition-all disabled:opacity-20 disabled:cursor-not-allowed"
                           >
                             Proceed <ArrowRight size={14} />
                           </button>
@@ -265,7 +257,7 @@ const ComingSoon = () => {
                         exit="exit"
                         className="absolute inset-0 flex flex-col justify-center h-full backface-hidden"
                       >
-                        <label className="text-[#2E5BFF] text-xs font-mono font-bold uppercase tracking-widest mb-4">
+                        <label className="text-[#2E5BFF] text-xs roboto-mono font-bold uppercase tracking-widest mb-4">
                                                     // 02. Coordinates
                         </label>
                         <h3 className="text-3xl font-black uppercase tracking-tight mb-8">Your email address?</h3>
@@ -276,19 +268,19 @@ const ComingSoon = () => {
                           onChange={handleChange}
                           autoFocus
                           placeholder="USER@NETWORK.IO"
-                          className="w-full bg-transparent border-b border-white/20 py-4 text-xl font-mono text-white placeholder-white/20 focus:outline-none focus:border-[#2E5BFF] transition-colors rounded-none"
+                          className="w-full bg-transparent border-b border-white/20 py-4 text-xl roboto-mono text-white placeholder-white/20 focus:outline-none focus:border-[#2E5BFF] transition-colors rounded-none"
                         />
                         <div className="flex justify-between items-center mt-auto pt-8">
                           <button
                             onClick={prevPage}
-                            className="text-gray-500 hover:text-white font-mono text-xs uppercase tracking-widest transition-colors"
+                            className="text-gray-500 hover:text-white roboto-mono text-xs uppercase tracking-widest transition-colors"
                           >
                             Return
                           </button>
                           <button
                             onClick={nextPage}
                             disabled={!formData.email}
-                            className="flex items-center gap-2 bg-[#FCFCFC] text-black px-6 py-3 rounded-[2px] font-mono font-bold text-xs uppercase tracking-widest hover:bg-[#2E5BFF] hover:text-white transition-all disabled:opacity-20 disabled:cursor-not-allowed"
+                            className="flex items-center gap-2 bg-[#FCFCFC] text-black px-6 py-3 rounded-[2px] roboto-mono font-bold text-xs uppercase tracking-widest hover:bg-[#2E5BFF] hover:text-white transition-all disabled:opacity-20 disabled:cursor-not-allowed"
                           >
                             Proceed <ArrowRight size={14} />
                           </button>
@@ -307,7 +299,7 @@ const ComingSoon = () => {
                         exit="exit"
                         className="absolute inset-0 flex flex-col justify-center h-full backface-hidden"
                       >
-                        <label className="text-[#2E5BFF] text-xs font-mono font-bold uppercase tracking-widest mb-4">
+                        <label className="text-[#2E5BFF] text-xs roboto-mono font-bold uppercase tracking-widest mb-4">
                                                     // 03. Intel
                         </label>
                         <h3 className="text-3xl font-black uppercase tracking-tight mb-8">What's the mission?</h3>
@@ -318,19 +310,19 @@ const ComingSoon = () => {
                           autoFocus
                           rows={3}
                           placeholder="PROJECT DETAILS..."
-                          className="w-full bg-transparent border-b border-white/20 py-4 text-lg font-mono text-white placeholder-white/20 focus:outline-none focus:border-[#2E5BFF] transition-colors resize-none rounded-none"
+                          className="w-full bg-transparent border-b border-white/20 py-4 text-lg roboto-mono text-white placeholder-white/20 focus:outline-none focus:border-[#2E5BFF] transition-colors resize-none rounded-none"
                         />
                         <div className="flex justify-between items-center mt-auto pt-8">
                           <button
                             onClick={prevPage}
-                            className="text-gray-500 hover:text-white font-mono text-xs uppercase tracking-widest transition-colors"
+                            className="text-gray-500 hover:text-white roboto-mono text-xs uppercase tracking-widest transition-colors"
                           >
                             Return
                           </button>
                           <button
                             onClick={handleSubmit}
                             disabled={!formData.message}
-                            className="bg-[#2E5BFF] text-white px-8 py-3 rounded-[2px] font-mono font-bold text-xs uppercase tracking-widest hover:bg-[#FCFCFC] hover:text-[#2E5BFF] transition-all disabled:opacity-20 border border-[#2E5BFF]"
+                            className="bg-[#2E5BFF] text-white px-8 py-3 rounded-[2px] roboto-mono font-bold text-xs uppercase tracking-widest hover:bg-[#FCFCFC] hover:text-[#2E5BFF] transition-all disabled:opacity-20 border border-[#2E5BFF]"
                           >
                             Transmit
                           </button>
@@ -351,13 +343,13 @@ const ComingSoon = () => {
                       >
                         <CheckCircle className="w-16 h-16 text-[#2E5BFF] mb-6" strokeWidth={1} />
                         <h3 className="text-3xl font-black uppercase tracking-tighter mb-3">Transmission Received</h3>
-                        <p className="text-gray-400 font-mono text-xs max-w-md mb-8 uppercase tracking-wide">
+                        <p className="text-gray-400 roboto-mono text-xs max-w-md mb-8 uppercase tracking-wide">
                           We are reviewing your data. <br />Standby for uplink.
                         </p>
                         <div className="flex gap-4">
                           <button
                             onClick={closeBook}
-                            className="bg-[#FCFCFC] text-black px-8 py-3 rounded-[2px] font-mono font-bold text-xs uppercase tracking-widest hover:bg-gray-200 transition-all"
+                            className="bg-[#FCFCFC] text-black px-8 py-3 rounded-[2px] roboto-mono font-bold text-xs uppercase tracking-widest hover:bg-gray-200 transition-all"
                           >
                             Close System
                           </button>

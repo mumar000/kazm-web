@@ -95,7 +95,7 @@ const Navbar = () => {
             {item.href.startsWith('#') ? (
               <a
                 href={item.href}
-                className="px-5 py-2 text-xl font-medium text-gray-800 hover:text-black transition-all duration-300 relative group block"
+                className="px-5 py-2 text-xl inter font-medium text-gray-800 hover:text-black transition-all duration-300 relative group block"
               >
                 {item.name}
                 <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-black group-hover:w-full transition-all duration-300 ease-out"></span>
@@ -103,7 +103,7 @@ const Navbar = () => {
             ) : (
               <Link
                 to={item.href}
-                className="px-5 py-2 text-xl font-medium text-gray-800 hover:text-black transition-all duration-300 relative group block"
+                className="px-5 py-2 text-xl inter font-medium text-gray-800 hover:text-black transition-all duration-300 relative group block"
               >
                 {item.name}
                 <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-black group-hover:w-full transition-all duration-300 ease-out"></span>
@@ -124,7 +124,7 @@ const Navbar = () => {
         }}
         whileTap={{ scale: 0.95 }}
         className={`
-          hidden md:block absolute right-8 px-6 py-3 bg-[#1B1B1B] text-white text-sm font-medium rounded-full transition-all duration-300 hover:bg-[#2a2a2a]
+          hidden md:block absolute right-8 px-6 py-3 bg-[#1B1B1B] text-white text-sm inter font-medium rounded-full transition-all duration-300 hover:bg-[#2a2a2a]
           ${isHomePage ? 'top-6' : 'top-1/2 -translate-y-1/2'}
         `}
       >

@@ -39,6 +39,8 @@ const CoreValues = () => {
         <SectionHeading
           title="Our Core Values"
           description="The principles that drive us to deliver exceptional results for our clients."
+          titleClassName="inter"
+          descriptionClassName="roboto-mono"
         />
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -54,7 +56,7 @@ const CoreValues = () => {
               <div className={`w-20 h-20 mx-auto mb-4 rounded-full bg-gradient-to-br ${value.color} flex items-center justify-center text-white`}>
                 {value.icon}
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-2 text-center">
+              <h3 className="text-xl inter font-bold text-gray-900 mb-2 text-center">
                 {value.title}
               </h3>
               <p className="text-gray-600 text-center text-sm">

@@ -89,10 +89,10 @@ const ManifestoHero = () => {
                 <div className="absolute  h-full flex flex-col items-center justify-center select-none mix-blend-screen">
                     <div className="w-2 h-2 rounded-full bg-[#2E5BFF] shadow-[0_0_25px_5px_#2E5BFF] mb-6 animate-pulse" />
 
-                    <h1 className="text-5xl md:text-7xl font-light tracking-[0.2em] uppercase text-center mix-blend-overlay opacity-50">
+                    <h1 className="text-5xl md:text-7xl inter font-light tracking-[0.2em] uppercase text-center mix-blend-overlay opacity-50">
                         Mani
                     </h1>
-                    <h1 className="text-5xl md:text-7xl font-bold tracking-[0.05em] uppercase text-center text-white mt-[-10px] drop-shadow-2xl">
+                    <h1 className="text-5xl md:text-7xl inter font-bold tracking-[0.05em] uppercase text-center text-white mt-[-10px] drop-shadow-2xl">
                         Festo
                     </h1>
 
@@ -146,10 +146,10 @@ const ManifestoHero = () => {
 
                                         {/* Typography */}
                                         <div className="text-center space-y-2 z-10">
-                                            <h3 className="text-xl font-bold uppercase tracking-widest text-white drop-shadow-md">
+                                            <h3 className="text-xl inter font-bold uppercase tracking-widest text-white drop-shadow-md">
                                                 {item.title}
                                             </h3>
-                                            <p className="text-xs text-[#2E5BFF] font-mono uppercase tracking-[0.2em] opacity-90">
+                                            <p className="text-xs text-[#2E5BFF] roboto-mono uppercase tracking-[0.2em] opacity-90">
                                                 {item.sub}
                                             </p>
                                         </div>
@@ -179,14 +179,6 @@ const ManifestoHero = () => {
 
                                             {/* Light Card */}
                                             <div className={`relative z-${20 * i} bg-[#FCFCFC] border-2 border-[#2E5BFF] rounded-2xl p-6 shadow-2xl`}>
-                                                {/* Subtle Pattern */}
-                                                <div
-                                                    className="absolute inset-0 opacity-[0.02] rounded-2xl"
-                                                    style={{
-                                                        backgroundImage: `radial-gradient(circle at 1px 1px, rgb(0 0 0) 1px, transparent 0)`,
-                                                        backgroundSize: '20px 20px'
-                                                    }}
-                                                />
 
                                                 <div className="relative z-10">
                                                     {/* Header */}
@@ -195,10 +187,10 @@ const ManifestoHero = () => {
                                                             <item.icon className="text-white" size={20} strokeWidth={2.5} />
                                                         </div>
                                                         <div>
-                                                            <h4 className="text-base font-black text-black uppercase tracking-wider">
+                                                            <h4 className="text-base inter font-black text-black uppercase tracking-wider">
                                                                 {item.title}
                                                             </h4>
-                                                            <p className="text-[10px] text-[#2E5BFF] font-mono uppercase tracking-widest font-bold">
+                                                            <p className="text-[10px] text-[#2E5BFF] roboto-mono uppercase tracking-widest font-bold">
                                                                 {item.sub}
                                                             </p>
                                                         </div>

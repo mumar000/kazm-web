@@ -107,8 +107,8 @@ export default function ContactForm() {
               title="Let's create something meaningful together."
               description="Share your vision and let's bring it to life through culture and creativity."
               className=""
-              titleClassName="text-4xl font-bold text-left mb-2"
-              descriptionClassName="text-gray-300 text-base text-left"
+              titleClassName="text-4xl inter font-bold text-left mb-2"
+              descriptionClassName="text-gray-300 text-base text-left roboto-mono"
             />
 
             {/* Form Fields */}

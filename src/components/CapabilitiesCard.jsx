@@ -197,14 +197,6 @@ const ServiceCard = ({ icon: Icon, number, title, description, tags, isActive })
             }}
         >
             <div className="relative h-[440px] bg-[#0a0a0a] border border-white/10 overflow-hidden group transition-all duration-500 hover:border-[#2E5BFF] shadow-2xl">
-                {/* Mesh Pattern Background */}
-                <div
-                    className="absolute inset-0 opacity-5"
-                    style={{
-                        backgroundImage: `radial-gradient(circle at 1px 1px, rgb(148 163 184) 1px, transparent 0)`,
-                        backgroundSize: '40px 40px'
-                    }}
-                />
 
                 {/* Subtle internal gradient highlight */}
                 <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent pointer-events-none" />
@@ -219,7 +211,7 @@ const ServiceCard = ({ icon: Icon, number, title, description, tags, isActive })
                     </div>
 
                     {/* Title */}
-                    <h3 className="text-2xl font-black text-[#FCFCFC] mb-4 tracking-tight leading-none uppercase">
+                    <h3 className="text-2xl inter font-black text-[#FCFCFC] mb-4 tracking-tight leading-none uppercase">
                         {title}
                     </h3>
 
@@ -236,7 +228,7 @@ const ServiceCard = ({ icon: Icon, number, title, description, tags, isActive })
                         {tags.map((tag, index) => (
                             <span
                                 key={index}
-                                className="px-3 py-1.5 text-[10px] uppercase tracking-widest font-bold text-[#FCFCFC]/70 bg-[#2E5BFF]/10 border border-white/10 font-mono"
+                                className="px-3 py-1.5 text-[10px] uppercase tracking-widest font-bold text-[#FCFCFC]/70 bg-[#2E5BFF]/10 border border-white/10 roboto-mono"
                             >
                                 {tag}
                             </span>
@@ -314,8 +306,8 @@ export default function CapabilitiesCard() {
                     title="Our Services"
                     subtitle="Technical Excellence Meets Culture"
                     className="max-w-7xl mx-auto px-4 md:px-8 mb-16"
-                    titleClassName="text-[#FCFCFC]"
-                    subtitleClassName="text-gray-400"
+                    titleClassName="text-[#FCFCFC] inter"
+                    subtitleClassName="text-gray-400 roboto-mono"
                 />
 
                 {/* Slider Navigation Buttons */}

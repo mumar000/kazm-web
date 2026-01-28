@@ -70,14 +70,7 @@ export default function About() {
 
     return (
         <div className="min-h-screen bg-[#050505] relative ">
-            {/* Grid Background */}
-            {/* <div
-                className="absolute inset-0 opacity-10 pointer-events-none"
-                style={{
-                    backgroundImage: 'linear-gradient(#222 1px, transparent 1px), linear-gradient(90deg, #222 1px, transparent 1px)',
-                    backgroundSize: '40px 40px'
-                }}
-            /> */}
+
 
             <div className="relative z-10 max-w-7xl mx-auto p-4 md:p-8 space-y-24 md:space-y-32">
 

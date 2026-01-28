@@ -30,6 +30,8 @@ const AboutUs = () => {
         <SectionHeading
           title="About Us"
           description="We're passionate about creating exceptional digital experiences that help businesses grow and succeed in the modern world."
+          titleClassName="inter"
+          descriptionClassName="roboto-mono"
         />
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -43,7 +45,7 @@ const AboutUs = () => {
               className="bg-gradient-to-br from-blue-50 to-purple-50 p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow"
             >
               <div className="text-blue-600 mb-4">{feature.icon}</div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-3">
+              <h3 className="text-2xl inter font-bold text-gray-900 mb-3">
                 {feature.title}
               </h3>
               <p className="text-gray-600">{feature.description}</p>

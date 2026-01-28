@@ -41,9 +41,9 @@ const Pillars = () => {
             <SectionHeading
                 title="The Pillars"
                 subtitle="The Rule of Three"
-                className="mb-16  pl-6"
-                titleClassName="text-[#FCFCFC] text-5xl md:text-7xl"
-                subtitleClassName="text-gray-400"
+                className="mb-16 "
+                titleClassName="text-[#FCFCFC] text-5xl md:text-7xl inter"
+                subtitleClassName="text-gray-400 roboto-mono"
             />
 
             <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-8">
@@ -68,14 +68,6 @@ const Pillars = () => {
                                         : 'bg-[#0a0a0a] border-white/10 hover:border-[#2E5BFF]/50'
                                         }`}
                                 >
-                                    {/* Mesh Pattern */}
-                                    <div
-                                        className="absolute inset-0 opacity-5 pointer-events-none"
-                                        style={{
-                                            backgroundImage: `radial-gradient(circle at 1px 1px, rgb(148 163 184) 1px, transparent 0)`,
-                                            backgroundSize: '40px 40px'
-                                        }}
-                                    />
 
                                     <div className="relative z-10 flex items-start gap-4">
                                         {/* Icon */}
@@ -93,7 +85,7 @@ const Pillars = () => {
                                         {/* Content */}
                                         <div className="flex-1">
                                             <div className="flex items-center justify-between mb-2">
-                                                <span className={`text-xs font-mono font-bold tracking-[0.2em] uppercase ${activeIndex === index ? 'text-white' : 'text-[#2E5BFF]'
+                                                <span className={`text-xs roboto-mono font-bold tracking-[0.2em] uppercase ${activeIndex === index ? 'text-white' : 'text-[#2E5BFF]'
                                                     }`}>
                                                     {service.tag}
                                                 </span>
@@ -103,7 +95,7 @@ const Pillars = () => {
                                                 </span>
                                             </div>
 
-                                            <h3 className={`text-xl font-black uppercase tracking-tight ${activeIndex === index ? 'text-white' : 'text-[#FCFCFC]'
+                                            <h3 className={`text-xl inter font-black uppercase tracking-tight ${activeIndex === index ? 'text-white' : 'text-[#FCFCFC]'
                                                 }`}>
                                                 {service.title}
                                             </h3>
@@ -124,14 +116,6 @@ const Pillars = () => {
                     {/* RIGHT: Active Content Display */}
                     <div className="md:col-span-8">
                         <div className="relative bg-[#0a0a0a] border border-white/10 p-8 md:p-12 min-h-[500px] overflow-hidden">
-                            {/* Mesh Pattern */}
-                            <div
-                                className="absolute inset-0 opacity-5"
-                                style={{
-                                    backgroundImage: `radial-gradient(circle at 1px 1px, rgb(148 163 184) 1px, transparent 0)`,
-                                    backgroundSize: '40px 40px'
-                                }}
-                            />
 
                             {/* Animated Glow */}
                             <div className="absolute -bottom-20 -right-20 w-96 h-96 bg-[#2E5BFF]/10 rounded-full blur-3xl transition-opacity duration-500" />
@@ -144,10 +128,10 @@ const Pillars = () => {
                                         <ActiveIcon className="text-white" size={24} strokeWidth={2} />
                                     </div>
                                     <div>
-                                        <span className="text-xs font-mono text-[#2E5BFF] font-bold tracking-[0.2em] uppercase block">
+                                        <span className="text-xs roboto-mono text-[#2E5BFF] font-bold tracking-[0.2em] uppercase block">
                                             {services[activeIndex].tag}
                                         </span>
-                                        <span className="text-lg font-black text-white uppercase tracking-tight">
+                                        <span className="text-lg inter font-black text-white uppercase tracking-tight">
                                             {services[activeIndex].title}
                                         </span>
                                     </div>
@@ -155,10 +139,10 @@ const Pillars = () => {
 
                                 {/* The Pitch */}
                                 <div className="mb-8">
-                                    <h4 className="text-xs font-mono uppercase tracking-widest text-gray-500 mb-4">
+                                    <h4 className="text-xs roboto-mono uppercase tracking-widest text-gray-500 mb-4">
                                         The Pitch
                                     </h4>
-                                    <p key={activeIndex} className="text-2xl md:text-3xl font-bold text-[#FCFCFC] leading-tight animate-[fadeIn_0.5s_ease-out]">
+                                    <p key={activeIndex} className="text-2xl md:text-3xl inter font-bold text-[#FCFCFC] leading-tight animate-[fadeIn_0.5s_ease-out]">
                                         "{services[activeIndex].pitch}"
                                     </p>
                                 </div>
@@ -168,7 +152,7 @@ const Pillars = () => {
 
                                 {/* Core Offerings */}
                                 <div>
-                                    <h4 className="text-xs font-mono uppercase tracking-widest text-gray-500 mb-6">
+                                    <h4 className="text-xs roboto-mono uppercase tracking-widest text-gray-500 mb-6">
                                         Core Offerings
                                     </h4>
                                     <div key={activeIndex + "-offerings"} className="grid md:grid-cols-2 gap-4">
@@ -218,15 +202,15 @@ const Pillars = () => {
                 {/* Bottom Stats */}
                 <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-4">
                     <div className="bg-[#0a0a0a] border border-white/10 p-6 flex justify-between items-center hover:border-[#2E5BFF] transition-colors duration-300">
-                        <span className="font-mono text-xs text-gray-500 uppercase tracking-widest">Services</span>
+                        <span className="roboto-mono text-xs text-gray-500 uppercase tracking-widest">Services</span>
                         <span className="font-black text-3xl text-[#FCFCFC]">03</span>
                     </div>
                     <div className="bg-[#0a0a0a] border border-white/10 p-6 flex justify-between items-center hover:border-[#2E5BFF] transition-colors duration-300">
-                        <span className="font-mono text-xs text-gray-500 uppercase tracking-widest">Approach</span>
+                        <span className="roboto-mono text-xs text-gray-500 uppercase tracking-widest">Approach</span>
                         <span className="font-black text-3xl text-[#FCFCFC]">360°</span>
                     </div>
                     <div className="bg-[#0a0a0a] border border-white/10 p-6 flex justify-between items-center hover:border-[#2E5BFF] transition-colors duration-300">
-                        <span className="font-mono text-xs text-gray-500 uppercase tracking-widest">Impact</span>
+                        <span className="roboto-mono text-xs text-gray-500 uppercase tracking-widest">Impact</span>
                         <span className="font-black text-3xl text-[#FCFCFC]">∞</span>
                     </div>
                 </div>
