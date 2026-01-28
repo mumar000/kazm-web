@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { useLazyLoad } from '../hooks/useLazyLoad';
 import { Target, Users, Zap } from 'lucide-react';
+import SectionHeading from './SectionHeading';
 
 const AboutUs = () => {
   const [ref, isVisible] = useLazyLoad({ threshold: 0.2 });
@@ -26,20 +27,10 @@ const AboutUs = () => {
   return (
     <section id="about" ref={ref} className="py-20 bg-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          animate={isVisible ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            About Us
-          </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            We're passionate about creating exceptional digital experiences that
-            help businesses grow and succeed in the modern world.
-          </p>
-        </motion.div>
+        <SectionHeading
+          title="About Us"
+          description="We're passionate about creating exceptional digital experiences that help businesses grow and succeed in the modern world."
+        />
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {features.map((feature, index) => (

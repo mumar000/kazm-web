@@ -4,6 +4,8 @@ import CustomerJourney from '../../components/CustomerJourney';
 import WhyKazm from './components/WhyKazm';
 import ServiceCard from './components/ServiceCard';
 import ManifestoHero from './components/ManifestoHero';
+import SectionHeading from '../../components/SectionHeading';
+import Pillars from './components/Pillars';
 
 export default function About() {
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -87,61 +89,9 @@ export default function About() {
 
                 {/* SERVICE PILLARS SECTION */}
                 <section>
-                    <div className="mb-16 border-l-2 border-[#2E5BFF] pl-6">
-                        <h2 className="text-5xl md:text-7xl font-black text-[#FCFCFC] tracking-tighter uppercase mb-2">
-                            The Pillars
-                        </h2>
-                        <p className="text-gray-400 font-mono uppercase tracking-widest text-sm">
-                            The Rule of Three
-                        </p>
-                    </div>
 
-                    <div
-                        className="relative px-4 md:px-12"
-                        onMouseEnter={() => setIsPaused(true)}
-                        onMouseLeave={() => setIsPaused(false)}
-                    >
-                        <button
-                            onClick={prevSlide}
-                            className="hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-[#0a0a0a] border border-white/10 items-center justify-center text-[#FCFCFC] hover:bg-[#2E5BFF] hover:border-[#2E5BFF] transition-all duration-300"
-                        >
-                            <ChevronLeft className="w-6 h-6" />
-                        </button>
 
-                        <button
-                            onClick={nextSlide}
-                            className="hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-[#0a0a0a] border border-white/10 items-center justify-center text-[#FCFCFC] hover:bg-[#2E5BFF] hover:border-[#2E5BFF] transition-all duration-300"
-                        >
-                            <ChevronRight className="w-6 h-6" />
-                        </button>
-
-                        <div className="overflow-hidden">
-                            <div
-                                className="grid gap-6 transition-all duration-700 ease-in-out"
-                                style={{ gridTemplateColumns: `repeat(${slidesToShow}, minmax(0, 1fr))` }}
-                            >
-                                {getVisibleSlides().map((service, idx) => (
-                                    <ServiceCard
-                                        key={`${service.originalIndex}-${idx}`}
-                                        service={service}
-                                        index={service.originalIndex}
-                                        isActive={idx === 0 || slidesToShow === 1}
-                                    />
-                                ))}
-                            </div>
-                        </div>
-
-                        <div className="flex items-center justify-center gap-2 mt-12">
-                            {services.map((_, index) => (
-                                <button
-                                    key={index}
-                                    onClick={() => goToSlide(index)}
-                                    className={`rounded-full transition-all duration-300 ${index === currentIndex ? 'w-8 h-2 bg-[#2E5BFF]' : 'w-2 h-2 bg-white/20 hover:bg-white/40'
-                                        }`}
-                                />
-                            ))}
-                        </div>
-                    </div>
+                    <Pillars />
                 </section>
 
                 {/* CUSTOMER JOURNEY SECTION */}

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import SectionHeading from "../../../components/SectionHeading";
 
 const WhyKazm = () => {
     const [hoveredIndex, setHoveredIndex] = useState(null);
@@ -24,25 +25,17 @@ const WhyKazm = () => {
 
     return (
         <div className="relative w-full bg-[#050505] py-20 md:py-32">
-            {/* Grid Background */}
-            <div
-                className="absolute inset-0 opacity-10 pointer-events-none"
-                style={{
-                    backgroundImage: 'linear-gradient(#222 1px, transparent 1px), linear-gradient(90deg, #222 1px, transparent 1px)',
-                    backgroundSize: '40px 40px'
-                }}
-            />
+
 
             <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-8">
                 {/* Section Header */}
-                <div className="mb-16 border-l-2 border-[#2E5BFF] pl-6">
-                    <h2 className="text-5xl md:text-7xl font-black text-[#FCFCFC] tracking-tighter uppercase mb-2">
-                        Why KAZM?
-                    </h2>
-                    <p className="text-gray-400 font-mono uppercase tracking-widest text-sm">
-                        The Competitive Edge
-                    </p>
-                </div>
+                <SectionHeading
+                    title="Why KAZM?"
+                    subtitle="The Competitive Edge"
+                    className="mb-16  pl-6"
+                    titleClassName="text-[#FCFCFC] text-5xl md:text-7xl"
+                    subtitleClassName="text-gray-400"
+                />
 
                 {/* Bento Grid - 2x2 Layout */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">

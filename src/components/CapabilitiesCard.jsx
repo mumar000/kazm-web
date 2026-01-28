@@ -184,6 +184,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { Code, TrendingUp, Zap, ChevronLeft, ChevronRight } from 'lucide-react';
+import SectionHeading from './SectionHeading';
 
 const ServiceCard = ({ icon: Icon, number, title, description, tags, isActive }) => {
     return (
@@ -302,30 +303,20 @@ export default function CapabilitiesCard() {
 
     return (
         <div className="min-h-screen relative z-10 w-full bg-[#050505] flex items-center justify-center py-20 font-sans overflow-hidden">
-            {/* Grid Background */}
-            <div
-                className="absolute inset-0 opacity-30 pointer-events-none"
-                style={{
-                    backgroundImage: 'linear-gradient(#222 1px, transparent 1px), linear-gradient(90deg, #222 1px, transparent 1px)',
-                    backgroundSize: '40px 40px'
-                }}
-            />
+
 
             {/* Background Accent */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#2E5BFF]/[0.02] rounded-full blur-[120px] pointer-events-none" />
 
             <div className="w-full relative z-10">
                 {/* Header */}
-                <div className="max-w-7xl mx-auto px-4 md:px-8 mb-16">
-                    <div className="border-l-2 border-[#2E5BFF] pl-6">
-                        <h2 className="text-5xl md:text-7xl font-black text-[#FCFCFC] tracking-tighter uppercase mb-2">
-                            Our Services
-                        </h2>
-                        <p className="text-gray-400 font-mono uppercase tracking-widest text-sm">
-                            Technical Excellence Meets Culture
-                        </p>
-                    </div>
-                </div>
+                <SectionHeading
+                    title="Our Services"
+                    subtitle="Technical Excellence Meets Culture"
+                    className="max-w-7xl mx-auto px-4 md:px-8 mb-16"
+                    titleClassName="text-[#FCFCFC]"
+                    subtitleClassName="text-gray-400"
+                />
 
                 {/* Slider Navigation Buttons */}
                 <div className="absolute left-1/2 -translate-x-1/2 top-1/2 w-full max-w-[1200px] flex justify-between px-10 z-50 pointer-events-none">

@@ -9,6 +9,7 @@ import {
   Youtube,
   Dribbble,
 } from 'lucide-react';
+import SectionHeading from './SectionHeading';
 
 export default function ContactForm() {
   const [formData, setFormData] = useState({
@@ -102,14 +103,13 @@ export default function ContactForm() {
 
           {/* Right Side - Form */}
           <div className="bg-[#1B1b1b] text-white rounded-2xl p-10 space-y-8">
-            <div>
-              <h2 className="text-4xl font-bold mb-2">
-                Let's create something meaningful together.
-              </h2>
-              <p className="text-gray-300 text-base">
-                Share your vision and let's bring it to life through culture and creativity.
-              </p>
-            </div>
+            <SectionHeading
+              title="Let's create something meaningful together."
+              description="Share your vision and let's bring it to life through culture and creativity."
+              className=""
+              titleClassName="text-4xl font-bold text-left mb-2"
+              descriptionClassName="text-gray-300 text-base text-left"
+            />
 
             {/* Form Fields */}
             <div className="space-y-4">

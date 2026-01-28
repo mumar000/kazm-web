@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import { CheckCircle } from 'lucide-react';
+import { CheckCircle, ArrowRight, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import SectionHeading from './SectionHeading';
 
 const ComingSoon = () => {
   const [formData, setFormData] = useState({
@@ -44,39 +45,39 @@ const ComingSoon = () => {
     setTimeout(() => {
       setCurrentPage(0);
       setFormData({ name: '', email: '', message: '' });
-    }, 600); // Wait for close animation
+    }, 600);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log('Form submitted:', formData);
-    // Add submission logic here
-    // Show confirmation page instead of closing immediately
     setDirection(1);
     setCurrentPage(4);
   };
 
-  // Glass styles constant for consistency
-  const glassPanel = 'bg-black/40  backdrop-blur-2xl border border-white/20';
+  // UI CONSTANTS: Industrial / Bento Box Style
+  // Sharp edges (rounded-[4px]), Fine borders, Obsidian BG
+  const bentoPanel = 'bg-[#0a0a0a] border border-white/10 backdrop-blur-md';
+  const cobaltAccent = '#2E5BFF';
 
-  // Animation Variants for the Page Flip Effect
+  // Animation Variants (Preserved)
   const pageVariants = {
     enter: (direction) => ({
-      rotateY: direction > 0 ? 90 : -90, // Enters from 90deg (right) or -90deg (left)
+      rotateY: direction > 0 ? 90 : -90,
       opacity: 0,
-      transformOrigin: 'left center', // IMPORTANT: Anchors rotation to the spine
+      transformOrigin: 'left center',
     }),
     center: {
       rotateY: 0,
       opacity: 1,
       transition: {
         duration: 0.6,
-        ease: [0.645, 0.045, 0.355, 1.0], // Cubic bezier for smooth paper feel
+        ease: [0.645, 0.045, 0.355, 1.0],
       },
       transformOrigin: 'left center',
     },
     exit: (direction) => ({
-      rotateY: direction > 0 ? -90 : 90, // Exits to -90deg (flip left) or 90deg (flip right)
+      rotateY: direction > 0 ? -90 : 90,
       opacity: 0,
       transition: { duration: 0.4 },
       transformOrigin: 'left center',
@@ -86,86 +87,116 @@ const ComingSoon = () => {
   return (
     <div
       id="contact"
-      className="relative min-h-screen bg-[#1b1b1b] text-white overflow-hidden flex items-center justify-center font-sans"
+      className="relative min-h-screen bg-[#050505] text-[#FCFCFC] overflow-hidden flex items-center justify-center font-sans"
     >
-      {/* Background Ambience */}
+      {/* --- GRID BACKGROUND (Industrial Texture) --- */}
+      <div
+        className="fixed inset-0 opacity-10 pointer-events-none"
+        style={{
+          backgroundImage: 'linear-gradient(#333 1px, transparent 1px), linear-gradient(90deg, #333 1px, transparent 1px)',
+          backgroundSize: '40px 40px'
+        }}
+      />
 
-      {/* Moving Text */}
-      <div className="absolute top-0 left-0 w-full overflow-hidden py-12 opacity-20 pointer-events-none">
+      {/* --- MOVING TEXT (Background Ambience) --- */}
+      <div className="absolute top-0 left-0 w-full overflow-hidden py-12 opacity-5 pointer-events-none select-none">
         <motion.div
           className="flex whitespace-nowrap"
           animate={{ x: [0, -2000] }}
-          transition={{ duration: 30, repeat: Infinity, ease: 'linear' }}
+          transition={{ duration: 60, repeat: Infinity, ease: 'linear' }}
         >
           {[...Array(10)].map((_, i) => (
-            <span key={i} className="text-[120px] md:text-[200px] font-black tracking-tight mx-8">
-              CONTACT US •
+            <span key={i} className="text-[120px] md:text-[200px] font-black tracking-tighter mx-8 text-white uppercase">
+              Start Project •
             </span>
           ))}
         </motion.div>
       </div>
 
-      {/* Main 3D Container */}
+      {/* --- MAIN 3D CONTAINER --- */}
       <div className="relative z-10 w-full max-w-5xl px-4" style={{ perspective: '2000px' }}>
         <AnimatePresence mode="wait">
+
           {/* STATE 1: BOOK CLOSED (COVER) */}
           {!isBookOpen ? (
             <motion.div
               key="cover"
-              initial={{ opacity: 0, rotateY: 30, scale: 0.9 }}
+              initial={{ opacity: 0, rotateY: 30, scale: 0.95 }}
               animate={{ opacity: 1, rotateY: 0, scale: 1 }}
               exit={{ opacity: 0, rotateY: -90, transition: { duration: 0.5 } }}
               transition={{ duration: 0.8, type: 'spring' }}
-              className={`mx-auto max-w-xl ${glassPanel} rounded-3xl p-12 text-center`}
+              className={`mx-auto max-w-xl ${bentoPanel} rounded-[4px] p-12 text-center shadow-[0_0_50px_-20px_rgba(46,91,255,0.1)]`}
               style={{ transformStyle: 'preserve-3d' }}
             >
-              <h1 className="text-6xl font-black mb-6 tracking-tighter">Hello.</h1>
-              <p className="text-xl text-gray-300 mb-10 leading-relaxed">
-                Let’s Create What Moves Culture.
-              </p>
+              <SectionHeading
+                title="HELLO."
+                description="LET'S CREATE WHAT MOVES CULTURE."
+                className="mb-10"
+                titleClassName="text-6xl md:text-8xl font-black tracking-tighter text-[#FCFCFC]"
+                descriptionClassName="text-sm md:text-base font-mono uppercase tracking-[0.2em] text-[#2E5BFF] mt-4"
+              />
+
+              {/* Industrial Button */}
               <motion.button
                 onClick={openBook}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="bg-white cursor-pointer text-black px-10 py-4 rounded-full font-bold text-lg hover:shadow-[0_0_20px_rgba(255,255,255,0.3)] transition-all"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="group relative inline-flex items-center gap-3 px-10 py-4 bg-[#2E5BFF] border border-[#2E5BFF] rounded-[2px] text-white overflow-hidden transition-all hover:bg-white hover:text-[#2E5BFF]"
               >
-                Contact Us
+                <span className="relative z-10 font-mono font-bold uppercase tracking-widest text-sm">
+                  Initialize Contact
+                </span>
+                <ArrowRight size={16} className="relative z-10" />
               </motion.button>
             </motion.div>
           ) : (
+
             // STATE 2: BOOK OPEN
             <motion.div
               key="book"
               initial={{ rotateY: 90, opacity: 0 }}
               animate={{ rotateY: 0, opacity: 1 }}
-              exit={{ opacity: 0, scale: 0.9 }}
+              exit={{ opacity: 0, scale: 0.95 }}
               transition={{ duration: 0.8, type: 'spring', bounce: 0.2 }}
-              className="flex flex-col md:flex-row shadow-2xl"
+              className="flex flex-col md:flex-row"
               style={{ transformStyle: 'preserve-3d' }}
             >
               {/* LEFT PAGE (Static Info) */}
               <div
-                className={`w-full md:w-1/2 ${glassPanel} rounded-t-3xl md:rounded-l-3xl md:rounded-tr-none p-10 md:p-14 relative z-10`}
+                className={`w-full md:w-1/2 bg-[#080808] border border-white/10 border-r-0 md:border-r border-b md:border-b-0 rounded-t-[4px] md:rounded-l-[4px] md:rounded-tr-none p-10 md:p-14 relative z-10`}
               >
                 <div className="h-full flex flex-col justify-between">
                   <div>
-                    <h2 className="text-4xl font-bold mb-6">Let's Connect</h2>
-                    <div className="w-12 h-1 bg-white mb-8 rounded-full"></div>
-                    <p className="text-gray-300 leading-relaxed text-lg">
-                      Fill out the form on the right page. We read every message and will get back
-                      to you faster than you think.
+                    <div className="flex items-center gap-2 mb-6">
+                      <div className="w-2 h-2 bg-[#2E5BFF]" />
+                      <span className="font-mono text-xs text-[#2E5BFF] tracking-widest uppercase">System IO</span>
+                    </div>
+
+                    <SectionHeading
+                      title="LET'S CONNECT"
+                      className=""
+                      titleClassName="text-4xl md:text-5xl font-black tracking-tighter text-white text-left mb-6 uppercase"
+                    />
+
+                    <p className="text-gray-400 font-mono text-xs leading-relaxed tracking-wide uppercase border-l border-[#2E5BFF] pl-4 py-2">
+                                            // Data Entry Required<br />
+                      We analyze every transmission.<br />
+                      Response time: Optimized.
                     </p>
                   </div>
 
-                  <div className="mt-8">
-                    <div className="flex items-center gap-2 text-sm text-gray-400 uppercase tracking-widest mb-2">
-                      Step
+                  {/* Industrial Progress Indicators */}
+                  <div className="mt-12">
+                    <div className="flex items-center gap-2 text-xs font-mono text-gray-500 uppercase tracking-widest mb-3">
+                      Sequence 0{currentPage} / 03
                     </div>
-                    <div className="flex gap-2">
+                    <div className="flex gap-1">
                       {[1, 2, 3].map((step) => (
                         <div
                           key={step}
-                          className={`h-1.5 rounded-full transition-all duration-500 ${currentPage >= step ? 'w-8 bg-white' : 'w-4 bg-white/20'
+                          className={`h-1 transition-all duration-300 ${currentPage >= step
+                              ? 'w-12 bg-[#2E5BFF]'
+                              : 'w-4 bg-white/10'
                             }`}
                         />
                       ))}
@@ -176,10 +207,11 @@ const ComingSoon = () => {
 
               {/* RIGHT PAGE (Dynamic Form Steps) */}
               <div
-                className={`w-full md:w-1/2 ${glassPanel} rounded-b-3xl md:rounded-r-3xl md:rounded-bl-none p-10 md:p-14 relative perspective-[1000px] border-l-0 md:border-l border-white/10`}
+                className={`w-full md:w-1/2 bg-[#050505] border border-white/10 rounded-b-[4px] md:rounded-r-[4px] md:rounded-bl-none p-10 md:p-14 relative perspective-[1000px]`}
               >
                 <div className="h-full relative" style={{ perspective: '1000px' }}>
                   <AnimatePresence custom={direction} mode="wait">
+
                     {/* STEP 1: NAME */}
                     {currentPage === 1 && (
                       <motion.div
@@ -191,32 +223,32 @@ const ComingSoon = () => {
                         exit="exit"
                         className="absolute inset-0 flex flex-col justify-center h-full backface-hidden"
                       >
-                        <label className="text-gray-400 text-sm font-semibold uppercase tracking-wider mb-3">
-                          01. Identity
+                        <label className="text-[#2E5BFF] text-xs font-mono font-bold uppercase tracking-widest mb-4">
+                                                    // 01. Identity
                         </label>
-                        <h3 className="text-3xl font-bold mb-8">What's your name?</h3>
+                        <h3 className="text-3xl font-black uppercase tracking-tight mb-8">What's your name?</h3>
                         <input
                           type="text"
                           name="name"
                           value={formData.name}
                           onChange={handleChange}
                           autoFocus
-                          placeholder="Type your name here..."
-                          className="w-full bg-transparent border-b-2 border-white/20 py-4 text-2xl text-white placeholder-white/20 focus:outline-none focus:border-white transition-colors"
+                          placeholder="ENTER DESIGNATION..."
+                          className="w-full bg-transparent border-b border-white/20 py-4 text-xl font-mono text-white placeholder-white/20 focus:outline-none focus:border-[#2E5BFF] transition-colors rounded-none"
                         />
                         <div className="flex justify-between items-center mt-auto pt-8">
                           <button
                             onClick={closeBook}
-                            className="text-gray-400 hover:text-white transition-colors"
+                            className="text-gray-500 hover:text-white font-mono text-xs uppercase tracking-widest transition-colors"
                           >
-                            Close
+                            Terminate
                           </button>
                           <button
                             onClick={nextPage}
                             disabled={!formData.name}
-                            className="flex items-center gap-2 bg-white text-black px-6 py-3 rounded-xl font-semibold hover:bg-gray-200 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                            className="flex items-center gap-2 bg-[#FCFCFC] text-black px-6 py-3 rounded-[2px] font-mono font-bold text-xs uppercase tracking-widest hover:bg-[#2E5BFF] hover:text-white transition-all disabled:opacity-20 disabled:cursor-not-allowed"
                           >
-                            Next <span className="text-xl">→</span>
+                            Proceed <ArrowRight size={14} />
                           </button>
                         </div>
                       </motion.div>
@@ -233,32 +265,32 @@ const ComingSoon = () => {
                         exit="exit"
                         className="absolute inset-0 flex flex-col justify-center h-full backface-hidden"
                       >
-                        <label className="text-gray-400 text-sm font-semibold uppercase tracking-wider mb-3">
-                          02. Contact
+                        <label className="text-[#2E5BFF] text-xs font-mono font-bold uppercase tracking-widest mb-4">
+                                                    // 02. Coordinates
                         </label>
-                        <h3 className="text-3xl font-bold mb-8">Your email address?</h3>
+                        <h3 className="text-3xl font-black uppercase tracking-tight mb-8">Your email address?</h3>
                         <input
                           type="email"
                           name="email"
                           value={formData.email}
                           onChange={handleChange}
                           autoFocus
-                          placeholder="name@example.com"
-                          className="w-full bg-transparent border-b-2 border-white/20 py-4 text-2xl text-white placeholder-white/20 focus:outline-none focus:border-white transition-colors"
+                          placeholder="USER@NETWORK.IO"
+                          className="w-full bg-transparent border-b border-white/20 py-4 text-xl font-mono text-white placeholder-white/20 focus:outline-none focus:border-[#2E5BFF] transition-colors rounded-none"
                         />
                         <div className="flex justify-between items-center mt-auto pt-8">
                           <button
                             onClick={prevPage}
-                            className="text-gray-400 hover:text-white transition-colors"
+                            className="text-gray-500 hover:text-white font-mono text-xs uppercase tracking-widest transition-colors"
                           >
-                            Back
+                            Return
                           </button>
                           <button
                             onClick={nextPage}
                             disabled={!formData.email}
-                            className="flex items-center gap-2 bg-white text-black px-6 py-3 rounded-xl font-semibold hover:bg-gray-200 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                            className="flex items-center gap-2 bg-[#FCFCFC] text-black px-6 py-3 rounded-[2px] font-mono font-bold text-xs uppercase tracking-widest hover:bg-[#2E5BFF] hover:text-white transition-all disabled:opacity-20 disabled:cursor-not-allowed"
                           >
-                            Next <span className="text-xl">→</span>
+                            Proceed <ArrowRight size={14} />
                           </button>
                         </div>
                       </motion.div>
@@ -275,32 +307,32 @@ const ComingSoon = () => {
                         exit="exit"
                         className="absolute inset-0 flex flex-col justify-center h-full backface-hidden"
                       >
-                        <label className="text-gray-400 text-sm font-semibold uppercase tracking-wider mb-3">
-                          03. Thoughts
+                        <label className="text-[#2E5BFF] text-xs font-mono font-bold uppercase tracking-widest mb-4">
+                                                    // 03. Intel
                         </label>
-                        <h3 className="text-3xl font-bold mb-8">What's on your mind?</h3>
+                        <h3 className="text-3xl font-black uppercase tracking-tight mb-8">What's the mission?</h3>
                         <textarea
                           name="message"
                           value={formData.message}
                           onChange={handleChange}
                           autoFocus
                           rows={3}
-                          placeholder="Tell us about your project..."
-                          className="w-full bg-transparent border-b-2 border-white/20 py-4 text-xl text-white placeholder-white/20 focus:outline-none focus:border-white transition-colors resize-none"
+                          placeholder="PROJECT DETAILS..."
+                          className="w-full bg-transparent border-b border-white/20 py-4 text-lg font-mono text-white placeholder-white/20 focus:outline-none focus:border-[#2E5BFF] transition-colors resize-none rounded-none"
                         />
                         <div className="flex justify-between items-center mt-auto pt-8">
                           <button
                             onClick={prevPage}
-                            className="text-gray-400 hover:text-white transition-colors"
+                            className="text-gray-500 hover:text-white font-mono text-xs uppercase tracking-widest transition-colors"
                           >
-                            Back
+                            Return
                           </button>
                           <button
                             onClick={handleSubmit}
                             disabled={!formData.message}
-                            className="bg-blue-500 text-white px-8 py-3 rounded-xl font-semibold hover:bg-white transition-all disabled:opacity-50 shadow-[0_0_20px_rgba(59,130,246,0.4)]"
+                            className="bg-[#2E5BFF] text-white px-8 py-3 rounded-[2px] font-mono font-bold text-xs uppercase tracking-widest hover:bg-[#FCFCFC] hover:text-[#2E5BFF] transition-all disabled:opacity-20 border border-[#2E5BFF]"
                           >
-                            Submit
+                            Transmit
                           </button>
                         </div>
                       </motion.div>
@@ -317,28 +349,17 @@ const ComingSoon = () => {
                         exit="exit"
                         className="absolute inset-0 flex flex-col justify-center items-center h-full text-center px-4 backface-hidden"
                       >
-                        <CheckCircle className="w-16 h-16 text-green-400 mb-6" />
-                        <h3 className="text-3xl font-bold mb-3">Thanks for reaching out!</h3>
-                        <p className="text-gray-300 max-w-md mb-8">
-                          We’ve received your message and will get back to you shortly.
+                        <CheckCircle className="w-16 h-16 text-[#2E5BFF] mb-6" strokeWidth={1} />
+                        <h3 className="text-3xl font-black uppercase tracking-tighter mb-3">Transmission Received</h3>
+                        <p className="text-gray-400 font-mono text-xs max-w-md mb-8 uppercase tracking-wide">
+                          We are reviewing your data. <br />Standby for uplink.
                         </p>
                         <div className="flex gap-4">
                           <button
                             onClick={closeBook}
-                            className="bg-white text-black px-8 py-3 rounded-xl font-semibold hover:bg-gray-200 transition-all"
+                            className="bg-[#FCFCFC] text-black px-8 py-3 rounded-[2px] font-mono font-bold text-xs uppercase tracking-widest hover:bg-gray-200 transition-all"
                           >
-                            Close
-                          </button>
-                          <button
-                            onClick={() => {
-                              // Reset to start a new entry without closing the book
-                              setFormData({ name: '', email: '', message: '' });
-                              setDirection(-1);
-                              setCurrentPage(1);
-                            }}
-                            className="border border-white/30 text-white px-8 py-3 rounded-xl font-semibold hover:bg-white/10 transition-all"
-                          >
-                            Send another
+                            Close System
                           </button>
                         </div>
                       </motion.div>

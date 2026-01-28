@@ -86,7 +86,7 @@ const ManifestoHero = () => {
                 }}
             >
                 {/* --- CENTER CORE --- */}
-                <div className="absolute z-20 h-full flex flex-col items-center justify-center select-none mix-blend-screen">
+                <div className="absolute  h-full flex flex-col items-center justify-center select-none mix-blend-screen">
                     <div className="w-2 h-2 rounded-full bg-[#2E5BFF] shadow-[0_0_25px_5px_#2E5BFF] mb-6 animate-pulse" />
 
                     <h1 className="text-5xl md:text-7xl font-light tracking-[0.2em] uppercase text-center mix-blend-overlay opacity-50">
@@ -109,7 +109,7 @@ const ManifestoHero = () => {
                     onMouseEnter={() => setIsHovered(true)}
                     onMouseLeave={() => setIsHovered(false)}
                 >
-                    <div className="absolute top-0 h-full left-1/2 -translate-x-1/2 -translate-y-[325px] w-1 h-20 bg-gradient-to-b from-transparent via-[#2E5BFF] to-transparent blur-sm" />
+                    {/* <div className="absolute top-0 h-full left-1/2 -translate-x-1/2 -translate-y-[325px] w-1 h-20 bg-gradient-to-b from-transparent via-[#2E5BFF] to-transparent blur-sm" /> */}
 
                     {items.map((item, i) => {
                         const rotationStep = 360 / items.length;
@@ -178,7 +178,7 @@ const ManifestoHero = () => {
                                             />
 
                                             {/* Light Card */}
-                                            <div className="relative bg-[#FCFCFC] border-2 border-[#2E5BFF] rounded-2xl p-6 shadow-2xl">
+                                            <div className={`relative z-${20 * i} bg-[#FCFCFC] border-2 border-[#2E5BFF] rounded-2xl p-6 shadow-2xl`}>
                                                 {/* Subtle Pattern */}
                                                 <div
                                                     className="absolute inset-0 opacity-[0.02] rounded-2xl"
@@ -224,11 +224,7 @@ const ManifestoHero = () => {
                 </div>
             </div>
 
-            {/* Scroller Hint */}
-            <div className="absolute bottom-10 z-20 flex flex-col items-center opacity-30">
-                <span className="text-[10px] tracking-widest uppercase mb-2">Scroll</span>
-                <div className="w-[1px] h-10 bg-white" />
-            </div>
+
 
             <style>{`
                 @keyframes pulse {

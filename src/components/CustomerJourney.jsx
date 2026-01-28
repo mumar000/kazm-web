@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Check, ArrowRight, ArrowLeft } from 'lucide-react';
+import SectionHeading from './SectionHeading';
 
 const CustomerJourney = () => {
     const targetRef = useRef(null);
@@ -59,10 +60,13 @@ const CustomerJourney = () => {
 
                 {/* Static Header Elements */}
                 <div className="absolute top-10 left-8 md:left-20 z-20">
-                    <div className="border-l-2 border-[#2E5BFF] pl-6">
-                        <h2 className="text-5xl font-black text-white tracking-tighter uppercase mb-2">The Loop</h2>
-                        <p className="text-gray-400 font-mono uppercase tracking-widest text-sm">Scroll to Explore</p>
-                    </div>
+                    <SectionHeading
+                        title="The Loop"
+                        subtitle="Scroll to Explore"
+                        className="text-left"
+                        titleClassName="text-white"
+                        subtitleClassName="text-gray-400"
+                    />
                 </div>
 
                 {/* Horizontal Motion Track */}

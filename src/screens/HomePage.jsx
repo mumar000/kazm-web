@@ -24,9 +24,9 @@ const HomePage = () => {
       />
 
       <HeroSectionII />
+      <About />
       <GallerySection />
       <CapabilitiesCard />
-      <About />
       <ComingSoon />
 
       {/* <AboutUs /> */}
